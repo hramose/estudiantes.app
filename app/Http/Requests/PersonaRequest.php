@@ -27,6 +27,7 @@ class PersonaRequest extends Request {
 			'tipoDocumento' 		=>	'required',
 			'nombre'				=>	'required|min:2',
 			'apellido'				=>	'required|min:2',
+			'sexo' 					=>	'required',
 			'fechaNacimiento'		=>	'required'
 
 		];

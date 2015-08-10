@@ -65,8 +65,10 @@ class MunicipioTableSeeder extends Seeder {
 								'tipoDocumento' 	=>	'TI',
 								'nombre' 			=> 	$faker->firstName,
 								'apellido'			=>	$faker->lastName,
+								'sexo'				=>	'F',
 								'telefono'			=>	$faker->phoneNumber,
 								'correo'			=>	$faker->freeEmail,
+								'lugarNacimiento'	=> 	$faker->city,
 								'fechaNacimiento'	=>	$faker->date($format = 'Y-m-d', $max = 'now'),
 								'observaciones'		=>	$faker->sentence($nbWords = 6)
 							]);

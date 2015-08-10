@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Registrar participante</div>
                 <div class="panel-body ">
-                    {!! Form::model($participante,['method' => 'POST', 'route' => ['participantes.store',$participante->id], 'class' => 'form-horizontal col-md-6']) !!}
+                    {!! Form::model($participante,['method' => 'PATCH', 'route' => ['participantes.update',$participante->id], 'class' => 'form-horizontal col-md-6']) !!}
 
                     <div class="form-group">
                         {!! Form::label('persona_id', 'Persona: ') !!}

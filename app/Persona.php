@@ -17,7 +17,7 @@ class Persona extends Model {
      *
      * @var array
      */
-    protected $fillable = ['documento', 'tipoDocumento','nombre','apellido','telefono','correo','fechaNacimiento','observaciones'];
+    protected $fillable = ['documento', 'tipoDocumento','nombre','apellido','sexo' , 'telefono','correo','lugarNacimiento','fechaNacimiento','observaciones'];
 
 
     public function participante(){

@@ -19,8 +19,10 @@ class CreatePersonasTable extends Migration {
 			$table->enum('tipoDocumento',['TI','CC','RC']);
 			$table->string('nombre');
 			$table->string('apellido');
+			$table->enum('sexo',['M','F']);
 			$table->string('telefono')->nullable();
 			$table->string('correo')->nullable();
+			$table->string('lugarNacimiento')->nullable();
 			$table->date('fechaNacimiento');
 			$table->string('observaciones',1000)->nullable();
 			$table->timestamps();
