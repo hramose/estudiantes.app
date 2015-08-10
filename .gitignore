@@ -1,6 +1,9 @@
 /vendor
 /node_modules
 .env
-.DS_Store
 .gitattributes
 .gitignore
+
+
+# Mac OS X
+.DS_Store
