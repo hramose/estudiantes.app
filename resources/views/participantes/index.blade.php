@@ -29,6 +29,8 @@
                             @endforeach
                           </tbody>
                       </table> 
+                      {!! $participantes->render() !!}
+
                     <div class="btn-group pull-right">
                         <a class="btn btn-info" href="{!! url('participantes/create')!!}" role="button">Nuevo</a>          
                     </div>           

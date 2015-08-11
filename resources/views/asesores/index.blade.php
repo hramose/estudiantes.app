@@ -29,7 +29,7 @@
                             @endforeach
                           </tbody>
                       </table> 
-
+                      {!! $asesores->render() !!}
 
                     <div class="btn-group pull-right">
                         <a class="btn btn-info" href="{!! url('asesores/create')!!}" role="button">Nuevo</a>          

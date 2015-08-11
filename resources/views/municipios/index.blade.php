@@ -28,7 +28,7 @@
                           </tbody>
                       </table> 
 
-                      {{ $municipios->render()}} 
+                      {!! $municipios->render() !!} 
 
                     <div class="btn-group pull-right">
                         <a class="btn btn-info" href="{!! url('municipios/create')!!}" role="button">Nuevo</a>          

@@ -30,7 +30,7 @@
                           </tbody>
                       </table> 
 
-                      {{ $establecimientos->render()}} 
+                      {!! $establecimientos->render() !!} 
 
                     <div class="btn-group pull-right">
                         <a class="btn btn-info" href="{!! url('establecimientos/create')!!}" role="button">Nuevo</a>          
