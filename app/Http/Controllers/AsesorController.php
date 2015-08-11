@@ -19,7 +19,7 @@ class AsesorController extends Controller {
 	public function index()
 	{
 		//
-		$asesores = Asesor::all();
+		$asesores = Asesor::paginate();
 		return view('asesores.index',compact('asesores'));
 
 	}

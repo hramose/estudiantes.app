@@ -28,7 +28,8 @@
                                </tr> 
                             @endforeach
                           </tbody>
-                      </table> 
+                      </table>
+                      
                       {!! $participantes->render() !!}
 
                     <div class="btn-group pull-right">

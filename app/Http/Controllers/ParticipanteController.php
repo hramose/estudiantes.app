@@ -22,7 +22,7 @@ class ParticipanteController extends Controller {
 	{
 		//
 		//$participantes = Participante::all();
-		$participantes = Participante::orderBy('persona_id', 'asc')->groupBy('rol')->get();
+		$participantes = Participante::orderBy('persona_id', 'asc')->groupBy('rol')->paginate();
 
 		//return $participantes;
 		return view('participantes.index',compact('participantes')); 
