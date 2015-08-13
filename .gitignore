@@ -3,7 +3,3 @@
 .env
 .gitattributes
 .gitignore
-
-
-# Mac OS X
-.DS_Store

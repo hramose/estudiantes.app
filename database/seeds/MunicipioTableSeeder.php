@@ -73,12 +73,12 @@ class MunicipioTableSeeder extends Seeder {
 								'observaciones'		=>	$faker->sentence($nbWords = 6)
 							]);
 
-				// Participante::create([
-				// 	'persona_id'			=>	$personas->id,
-				// 	'establecimiento_id'	=>	$faker->numberBetween($min = 1, $max = 5),
-				// 	'rol'					=>	'estudiante'
+				 Participante::create([
+				 	'persona_id'			=>	$personas->id,
+				 	'establecimiento_id'	=>	$faker->numberBetween($min = 1, $max = 5),
+				 	'tipo'					=>	'estudiante'
 
-				// 	]);
+					]);
 
 				Asesor::create([
 					'user_id' 				=>	'1',

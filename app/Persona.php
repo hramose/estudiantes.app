@@ -31,6 +31,13 @@ class Persona extends Model {
 
     }
 
+    public function scopeDocumento($query, $documento){
+
+        if ($documento !="" ){
+            $query->where('documento','Like','%$documento%');
+        }
+    }
+
 
 
 

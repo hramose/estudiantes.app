@@ -13,17 +13,17 @@
                           <thead>
                               <tr>
                                 <th>Nombre</th>
-                                <th>Establecimiento</th>
-                                <th>Municipio</th>
+                                <th>Establecimientos</th>
+                                <th>Municipios</th>
                                 <th>Nodo</th>
                               </tr>
                           </thead>
                           <tbody>
                             @foreach($asesores as $asesor)
                               <tr>
-                                <td>{{ $asesor->user->name }}</td>
-                                <td>{{ $asesor->establecimiento->nombre}}</td>
-                                <td>{{ $asesor->establecimiento->municipio->nombre }}</td>
+                                <td><a href="asesores/"{{ $asesor->id }} "/show"> {{ $asesor->user->name }}</a></td>
+                                <td>{{ $asesor->establecimiento->count()}}</td>
+                                <td>{{ $asesor->establecimiento->municipio->count() }}</td>
                                 <td>{{ $asesor->establecimiento->municipio->nodo }}</td>
                               </tr> 
                             @endforeach

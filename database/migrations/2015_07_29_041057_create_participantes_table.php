@@ -17,7 +17,8 @@ class CreateParticipantesTable extends Migration {
 			$table->increments('id');
 			$table->integer('persona_id')->unsigned();
 			$table->integer('establecimiento_id')->unsigned();
-			$table->string('rol');
+			$table->string('tipo');
+			$table->string('grado')->nullable();
 			$table->timestamps();
 
 			$table->foreign('persona_id')->references('id')->on('personas')->onUpdate('cascade')->onDelete('cascade');

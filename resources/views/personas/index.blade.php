@@ -9,6 +9,20 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Personas</div>
                 <div class="panel-body ">
+                     <div class="btn-group pull-left">
+                        <a class="btn btn-info" href="{!! url('personas/create')!!}" role="button">Nuevo</a>          
+                    </div>
+
+                    {!! Form::open(['method' => 'GET', 'route' => 'personas.index', 'class' => 'form-inline pull-right']) !!}
+                        <div class="form-group">
+                            {!! Form::text('documento', null, ['class' => 'form-control','placeholder'=>'N&uacute;mero de documento', 'required' => 'required']) !!}
+                            <small class="text-danger">{{ $errors->first('documento') }}</small>
+                        </div>
+                            {!! Form::submit("Buscar", ['class' => 'btn btn-default']) !!}
+                    {!! Form::close() !!}                                          
+                  </div>
+                </form>
+
                     <table class="table table-striped table-hover">
                           <thead>
                               <tr>
@@ -19,28 +33,27 @@
                                 <th>Telefono</th>
                                 <th>Correo</th>
                                 <th>Fecha de Nacimiento</th>
+                                <th>Acciones</th>
                               </tr>
                           </thead>
                           <tbody>
                             @foreach($personas as $persona)
                               <tr>
                                 <td>{{ $persona->id }}</td>
-                                <td><a href="personas/{{ $persona->id }}/edit">{{ $persona->documento }}</a></td>
+                                <td>{{ $persona->documento }}</td>
                                 <td>{{ $persona->tipoDocumento }}</td>
                                 <td>{{ $persona->full_name }}</td>
                                 <td>{{ $persona->telefono }}</td>
                                 <td>{{ $persona->correo }}</td>
                                 <td>{{ $persona->fechaNacimiento }}</td>
+                                <td><a href="personas/{{ $persona->id }}/edit">Editar</a></td>
                                </tr> 
                             @endforeach
                           </tbody>
                       </table> 
 
                       {!! $personas->render() !!}
-
-                    <div class="btn-group pull-right">
-                        <a class="btn btn-info" href="{!! url('personas/create')!!}" role="button">Nuevo</a>          
-                    </div>           
+      
                 </div>
             </div>
         </div>

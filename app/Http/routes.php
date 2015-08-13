@@ -1,5 +1,7 @@
 <?php
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -26,3 +28,6 @@ resource('grupo_investigaciones','GrupoInvestigacionController');
 resource('asesores','AsesorController');
 resource('personas','PersonaController');
 resource('participantes','ParticipanteController');
+
+Route::get('ajax-gi','PersonaController@ajax_gi');
+

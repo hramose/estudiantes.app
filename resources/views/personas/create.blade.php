@@ -14,85 +14,9 @@
 
                   
                   {!! Form::open(['method' => 'POST', 'route' => 'personas.store', 'class' => 'form-horizontal col-md-11']) !!}
+                  @include('personas.partials.form');
 
-                      <div class="form-group">
-                          {!! Form::label('documento', 'Nº de documento:') !!}
-                          {!! Form::text('documento', null, ['class' => 'form-control', 'required' => 'required']) !!}
-                          <small class="text-danger">{{ $errors->first('documento') }}</small>
-                      </div>
-
-                      <div class="form-group">
-                          {!! Form::label('tipoDocumento', 'Tipo de documento:') !!}
-                          {!! Form::select('tipoDocumento',[ ''=>'','TI'=>'Tarjeta de Identidad','CC'=>'Cedula de Ciudadan&iacute;a','RC'=>'Registro Civil'], null, ['class' => 'form-control', 'required' => 'required']) !!}
-                          <small class="text-danger">{{ $errors->first('tipoDocumento') }}</small>
-                      </div>
-
-                      <div class="form-group">
-                          {!! Form::label('nombre', 'Nombre:') !!}
-                          {!! Form::text('nombre', null, ['class' => 'form-control', 'required' => 'required']) !!}
-                          <small class="text-danger">{{ $errors->first('nombre') }}</small>
-                      </div>
-
-                      <div class="form-group">
-                          {!! Form::label('apellido', 'Apellido:') !!}
-                          {!! Form::text('apellido', null, ['class' => 'form-control', 'required' => 'required']) !!}
-                          <small class="text-danger">{{ $errors->first('apellido') }}</small>
-                      </div>
-
-                    <div class="form-group">
-                        <div class="checkbox">
-                            <label for="sexo" class="checkbox-inline">
-                                {!! Form::radio('sexo', 'F',  null, [
-                                    'class' => 'form-control',
-                                    'id'    => 'sexo',
-                                ]) !!} Femenino
-                            </label>
-
-                            <label for="rol" class="checkbox-inline">
-                                {!! Form::radio('sexo', 'M',  null, [
-                                    'class' => 'form-control',
-                                    'id'    => 'sexo',
-                                ]) !!} Masculino
-                            </label>
-                        </div>
-                      </div>
-
-                </div>
-                <div class="col-md-6"> 
-
-                      <div class="form-group">
-                          {!! Form::label('telefono', 'Telefono:') !!}
-                          {!! Form::text('telefono', null, ['class' => 'form-control', 'required' => 'required','placeholder'=>'5-777777']) !!}
-                          <small class="text-danger">{{ $errors->first('telefono') }}</small>
-                      </div>
-
-                      <div class="form-group">
-                         {!! Form::label('correo', 'Correo:') !!}
-                         {!! Form::text('correo', null, ['class' => 'form-control', 'required' => 'required','placeholder'=>'correo@ejemplo.com']) !!}
-                         <small class="text-danger">{{ $errors->first('correo') }}</small>
-                      </div>
-
-                      <div class="form-group">
-                          {!! Form::label('lugarNacimiento', 'Lugar de Nacimiento:') !!}
-                          {!! Form::text('lugarNacimiento', null, ['class' => 'form-control', 'required' => 'required']) !!}
-                          <small class="text-danger">{{ $errors->first('lugarNacimiento') }}</small>
-                      </div>
-
-                      <div class="form-group">
-                          {!! Form::label('fechaNacimiento', 'Fecha de Nacimiento:', ['class' => 'control-label']) !!}
-                            {!! Form::date('fechaNacimiento', null, ['class' => 'form-control', 'required' => 'required','placeholder'=>'DD/MM/AAAA']) !!}
-                            <small class="text-danger">{{ $errors->first('fechaNacimiento') }}</small>
-                      </div>
-
-                </div>
-
-                <div class="col-md-12"> 
-
-                      <div class="form-group">
-                         {!! Form::label('observaciones', 'Observaciones:') !!}
-                         {!! Form::textarea('observaciones', null, ['class' => 'form-control', 'required' => 'required']) !!}
-                         <small class="text-danger">{{ $errors->first('observaciones') }}</small>
-                      </div>                 
+                  <div class="col-md-12">              
 
                       <div class="btn-group pull-right">
                           <a class="btn btn-warning" href="{!! url('personas') !!}" role="button">Cancelar</a>
@@ -108,5 +32,35 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+
+$(document).ready(function(){
+
+    $("#establecimiento_id" ).change(function(e) {
+
+      console.log(e);
+
+      var ee_id = e.target.value;
+
+        //ajax
+        $.get('/ajax-gi?ee_id=' + ee_id,function (data) {
+            
+            // succes data
+            alert(data);
+            $("#grupoInvestigacion_id").empty();
+
+            $.each(data,function(i, gi_Obj){
+                $("#grupoInvestigacion_id").append('"<option value ="' + gi_Obj.id +'">' + gi_Obj.nombre + '</option>');
+            });
+        });
+
+    });
+  
+});
+
+</script>
 @endsection
 

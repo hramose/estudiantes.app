@@ -17,6 +17,7 @@ class CreateInvestigadoresTable extends Migration {
 			$table->increments('id');
 			$table->integer('grupoInvestigacion_id')->unsigned();
 			$table->integer('participante_id')->unsigned();
+			$table->enum('rolInvestigador',['Estudiante Lider','Docentes Lider']);
 			$table->timestamps();
 
 			$table->foreign('grupoInvestigacion_id')
