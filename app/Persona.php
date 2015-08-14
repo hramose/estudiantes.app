@@ -29,7 +29,6 @@ class Persona extends Model {
         'fechaNacimiento',
         'observaciones',
         'tipo',
-        'grado',
         'establecimiento_id'
         ];
 

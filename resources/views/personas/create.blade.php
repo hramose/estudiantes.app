@@ -36,37 +36,8 @@
 @endsection
 
 @section('scripts')
-<script>
 
-$(document).ready(function(){
+   @include('personas.partials.scripts')
 
-    $("#establecimiento_id" ).change(function(e) {
-      //console.log(e);
-      var ee_id = e.target.value;
-      //ajax
-      $.get('/ajax-gi?ee_id=' + ee_id,function (data) { 
-          // succes data
-          $("#grupoInvestigacion_id").empty();
-          $.each(data,function(i, gi_Obj){
-              $("#grupoInvestigacion_id").append('"<option value ="' + gi_Obj.id +'">' + gi_Obj.nombre + '</option>');
-          });
-      },'json');  
-
-    });
-
-    $("#tipo").change(function(e){
-      //console.log(e);
-      var tipo = e.target.value;
-      if( tipo == "estudiante" || tipo == "investigador"){
-          $("#panel-gi").show();
-      } else {
-        $("#panel-gi").hide();
-      }
-
-    });
-  
-});
-
-</script>
 @endsection
 

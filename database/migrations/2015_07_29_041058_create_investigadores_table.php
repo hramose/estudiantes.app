@@ -15,9 +15,10 @@ class CreateInvestigadoresTable extends Migration {
 		Schema::create('investigadores', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('grupoInvestigacion_id')->unsigned();
 			$table->integer('persona_id')->unsigned();
-			$table->string('rol');
+			$table->integer('grupoInvestigacion_id')->unsigned();
+			$table->enum('rol',['lider','tesorero','relator-secretario','investigador','acompanante','coinvestigador']);
+			$table->string('grado')->nullable();
 			$table->timestamps();
 
 			$table->foreign('grupoInvestigacion_id')

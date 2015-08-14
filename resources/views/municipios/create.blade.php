@@ -15,9 +15,9 @@
                         <small class="text-danger"> {{ $errors->first('nombre') }}</small>
                     </div>  
                     <div class="form-group">
-                      {!! Form::label('nodo', 'Nodo:') !!}
-                      {!! Form::select('nodo', [''=>'','1' => '&Aacute;rea metrop&oacute;litana','2'=>'Oca&ntilde;a','3'=>'Pamplona'],null, ['class' => 'form-control', 'required' => 'required']) !!}
-                      <small class="text-danger">{{ $errors->first('nodo') }}</small>
+                      {!! Form::label('ruta', 'Ruta:') !!}
+                      {!! Form::select('ruta', [''=>'','1' => '&Aacute;rea metrop&oacute;litana','2'=>'Oca&ntilde;a','3'=>'Pamplona'],null, ['class' => 'form-control', 'required' => 'required']) !!}
+                      <small class="text-danger">{{ $errors->first('ruta') }}</small>
                     </div>                                  
                     <div class="btn-group pull-right">
                         <a class="btn btn-warning" href="{!! url('municipios') !!}" role="button">Cancelar</a>          

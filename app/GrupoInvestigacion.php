@@ -23,5 +23,9 @@ class GrupoInvestigacion extends Model {
       return $this->belongsTo('App\Establecimiento');
     }
 
+    public function investigador(){
+
+        return $this->belongsTo('App\Investigador');
+    }
 
 }

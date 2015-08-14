@@ -5,8 +5,8 @@ use Illuminate\Database\Eloquent\Model;
 use App\Municipio;
 use App\Establecimiento;
 use App\GrupoInvestigacion;
+use App\Investigador;
 use App\Persona;
-use App\Participante;
 use App\Asesor;
 
 
@@ -74,6 +74,14 @@ class MunicipioTableSeeder extends Seeder {
 								'tipo'				=>	'estudiante',
 								'establecimiento_id'=>	$i + 1
 							]);
+
+				Investigador::create([
+					'persona_id'			=> 	$personas->id,
+					'grupoInvestigacion_id'	=>	$i + 1,
+					'rol'					=>	$faker->randomElement(['estudiante','lider','tesorero']),
+					'grado'					=>	$faker->numberBetween($min = 1, $max = 5)
+
+					]);
 
 				Asesor::create([
 					'user_id' 				=>	'1',

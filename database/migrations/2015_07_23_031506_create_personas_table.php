@@ -25,8 +25,16 @@ class CreatePersonasTable extends Migration {
 			$table->string('lugarNacimiento')->nullable();
 			$table->date('fechaNacimiento');
 			$table->string('observaciones',500)->nullable();
-			$table->string('tipo');
-			$table->string('grado')->nullable();
+			$table->enum('tipo',[
+				'estudiante',
+				'docente',
+				'investigador',
+				'coinvestigador',
+				'acompanante',
+				'jefearea',
+				'coordinador',
+				'rector'
+				]);
 			$table->integer('establecimiento_id')->unsigned();
 			$table->timestamps();
 

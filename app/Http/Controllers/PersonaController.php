@@ -6,9 +6,10 @@ use App\Http\Controllers\Controller;
 
 use Auth;
 use App\Persona;
-use App\Asesor;
-use App\Establecimiento;
+use App\Investigador;
 use App\GrupoInvestigacion;
+use App\Establecimiento;
+use App\Asesor;
 
 use Illuminate\Http\Request;
 
@@ -23,18 +24,16 @@ class PersonaController extends Controller {
 
 	{
 		//
-		$personas = Persona::documento($request->get('documento'))->whereHas('establecimiento',function($q){
-
-				$q->whereHas('asesor', function($q){	
-				
-						$user = Auth::user();
-						$q->where('user_id', $user->id);
+		$personas = Persona::documento($request->get('documento'))
+					->with('investigador')
+					->whereHas('establecimiento',function($q){
+							$q->whereHas('asesor', function($q){
+								$user = Auth::user();
+								$q->where('user_id', $user->id);
+							});
+						})->paginate();
 		
-				});
-		
-		})->paginate();
-		
-		//dd($personas);
+		//foreach ($personas as $persona) {dd($persona->investigador->grupoInvestigacion->first()->nombre); }
 		return view('personas.index',compact('personas'));
 	}
 
@@ -49,10 +48,8 @@ class PersonaController extends Controller {
 		//$asesores = Asesor::where('user_id',$user->id)->get();
 
 		$establecimientos = Establecimiento::whereHas('asesor', function($q){
-				
-				$user = Auth::user();
-				$q->where('user_id', $user->id);
-		
+			$user = Auth::user();
+			$q->where('user_id', $user->id);
 		})->lists('nombre','id');
 		
 		return view('personas.create',compact('establecimientos'));
@@ -68,15 +65,21 @@ class PersonaController extends Controller {
 	{
 		//$persona = Persona::create($request->all());
 		
-		//create participante row
-		$participante = new Participante(['establecimiento_id' => $request->establecimiento_id,'rol'=>$request->rol  ]);
-		$persona = Persona::create($request->all());
-		$participante = $persona->participante()->save($participante);
 
-		if ($request->grupoInvestigacion_id != ""){
-			//create investigador row
-			$investigador = new Investigador(['grupoInvestigacion_id' => $request->grupoInvestigacion_id]);	
-			$investigador = $participante->investigador()->save($investigador);
+		if ($request->tipo == "estudiante" || $request->tipo == "coinvestigador" || $request->tipo == "acompanante" ){
+			$investigador = new Investigador([
+				'grupoInvestigacion_id' => $request->grupoInvestigacion_id,
+				'rol'					=> $request->rol,
+				'grado'					=> $request->grado
+				]);
+
+			$persona = Persona::create($request->all());
+			
+			$investigador = $persona->investigador()->save($investigador);
+			
+		}else {
+			//only create Persona
+			$persona = Persona::create($request->all());
 		}
 
 		return redirect('personas');
@@ -105,15 +108,15 @@ class PersonaController extends Controller {
 		//
 		$persona = Persona::find($id);
 
-		$establecimientos = Establecimiento::whereHas('asesor', function($q){
-				
-				$user = Auth::user();
-				$q->where('user_id', $user->id);
-		
+		$establecimientos = Establecimiento::with('grupoInvestigacion')->whereHas('asesor', function($q){
+			$user = Auth::user();
+			$q->where('user_id', $user->id);
 		})->lists('nombre','id');
+		
+		//$establecimientosLists = $establecimientos->lists('nombre','id');
 
 		return view('personas.edit',compact('persona','establecimientos'));
-
+		//dd($investigador);
 	}
 
 	/*
@@ -122,13 +125,20 @@ class PersonaController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id, PersonaRequest	$request)
+	public function update($id,Request	$request)
 	{
 		//
-		$persona = Persona::find($id);
-		$persona->update($request->all());
 
-		return redirect('personas');
+		$persona = Persona::with('investigador')->find($id);
+	    $persona->fill($request->all());
+	    $persona->investigador->fill([
+			'grupoInvestigacion_id' => $request->grupoInvestigacion_id,
+			'rol'					=> $request->rol,
+			'grado'					=> $request->grado
+			]);
+	    $persona->push();
+
+	    return redirect('personas');
 	}
 
 	/**
@@ -148,7 +158,8 @@ class PersonaController extends Controller {
 
 	public function ajax_gi(Request $request)
 	{
-		$grupoInvestigaciones = GrupoInvestigacion::has('establecimiento',$request->get('ee_id'))->get()->toJson();
+		$grupoInvestigaciones = GrupoInvestigacion::where('establecimiento_id',$request->ee_id)->get()->toJson();
+		
 		return ($grupoInvestigaciones);
 
 	}

@@ -24,13 +24,13 @@
                 
                       <div class="form-group">
                           {!! Form::label('telefono', 'Telefono:') !!}
-                          {!! Form::text('telefono', null, ['class' => 'form-control', 'required' => 'required','placeholder'=>'5-777777']) !!}
+                          {!! Form::text('telefono', null, ['class' => 'form-control','placeholder'=>'5-777777']) !!}
                           <small class="text-danger">{{ $errors->first('telefono') }}</small>
                       </div>
 
                       <div class="form-group">
                          {!! Form::label('correo', 'Correo:') !!}
-                         {!! Form::text('correo', null, ['class' => 'form-control', 'required' => 'required','placeholder'=>'correo@ejemplo.com']) !!}
+                         {!! Form::text('correo', null, ['class' => 'form-control','placeholder'=>'correo@ejemplo.com']) !!}
                          <small class="text-danger">{{ $errors->first('correo') }}</small>
                       </div>
 
@@ -38,15 +38,17 @@
                         <div class="checkbox">
                             <label for="sexo" class="checkbox-inline">
                                 {!! Form::radio('sexo', 'F',  null, [
-                                    'class' => 'form-control',
-                                    'id'    => 'sexo',
+                                    'class'   => 'form-control',
+                                    'id'      => 'sexo',
+                                    'required'=> 'required'
                                 ]) !!} Femenino
                             </label>
 
                             <label for="rol" class="checkbox-inline">
                                 {!! Form::radio('sexo', 'M',  null, [
-                                    'class' => 'form-control',
-                                    'id'    => 'sexo',
+                                    'class'   => 'form-control',
+                                    'id'      => 'sexo',
+                                    'required'=> 'required'
                                 ]) !!} Masculino
                             </label>
                         </div>
@@ -57,13 +59,13 @@
 
                       <div class="form-group">
                           {!! Form::label('lugarNacimiento', 'Lugar de Nacimiento:') !!}
-                          {!! Form::text('lugarNacimiento', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                          {!! Form::text('lugarNacimiento', null, ['class' => 'form-control']) !!}
                           <small class="text-danger">{{ $errors->first('lugarNacimiento') }}</small>
                       </div>
 
                       <div class="form-group">
                           {!! Form::label('fechaNacimiento', 'Fecha de Nacimiento:', ['class' => 'control-label']) !!}
-                            {!! Form::date('fechaNacimiento', null, ['class' => 'form-control', 'required' => 'required','placeholder'=>'DD/MM/AAAA']) !!}
+                            {!! Form::date('fechaNacimiento', null, ['class' => 'form-control','placeholder'=>'DD/MM/AAAA']) !!}
                             <small class="text-danger">{{ $errors->first('fechaNacimiento') }}</small>
                       </div>
 
@@ -80,7 +82,7 @@
                           <small class="text-danger">{{ $errors->first('tipo') }}</small>
                      </div>
 
-                    <div class="panel panel-default" id="panel-gi" style="display:none;">
+                    <div class="panel panel-default" id="panelGi" style="display:none;">
                       <div class="panel-body">
 
                           <div class="form-group">
@@ -90,9 +92,15 @@
                            </div>
 
                           <div class="form-group">
-                                {!! Form::label('rol', 'Rol:') !!}
-                                {!! Form::select('rol',withEmpty(config('options.roles'),'...'),null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                {!! Form::label('rol', 'Rol:',['class'=>'rol']) !!}
+                                {!! Form::select('rol',withEmpty(config('options.roles'),'...'),null, ['class' => 'form-control rol']) !!}
                                 <small class="text-danger">{{ $errors->first('rol') }}</small>
+                           </div>
+
+                          <div class="form-group">
+                                {!! Form::label('grado', 'Grado:',['class'=>'grado']) !!}
+                                {!! Form::select('grado',withEmpty(config('options.grados'),'...'),null, ['class' => 'form-control grado']) !!}
+                                <small class="text-danger">{{ $errors->first('grado') }}</small>
                            </div>
 
                       </div>
@@ -105,7 +113,7 @@
 
                       <div class="form-group">
                          {!! Form::label('observaciones', 'Observaciones :') !!}
-                         {!! Form::textarea('observaciones', null, ['class' => 'form-control', 'required' => 'required','rows'=>'3']) !!}
+                         {!! Form::textarea('observaciones', null, ['class' => 'form-control','rows'=>'3']) !!}
                          <small class="text-danger">{{ $errors->first('observaciones') }}</small>
                       </div>  
                 </div>               

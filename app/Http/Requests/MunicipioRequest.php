@@ -24,7 +24,7 @@ class MunicipioRequest extends Request {
 		return [
 			//
 			'nombre' => 'required|min:3',
-			'nodo' => 'required'
+			'ruta' => 'required'
 		];
 	}
 

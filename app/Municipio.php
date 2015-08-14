@@ -17,7 +17,7 @@ class Municipio extends Model {
      *
      * @var array
      */
-    protected $fillable = ['nombre', 'nodo'];
+    protected $fillable = ['nombre', 'ruta'];
 
 
 

@@ -21,16 +21,32 @@ class PersonaRequest extends Request {
 	 */
 	public function rules()
 	{
+		$gi = "";
+		$value = "";
+
+		if(Request::get('tipo') == "estudiante"){
+
+            $gi = 'required';
+            $value = 'required';
+
+		} else if(Request::get('tipo') == "coinvestigador" OR Request::get('tipo') == "acompanante"){
+            $gi = 'required';
+        }
+
 		return [
 			//
-			'documento' 			=> 	'required|min:5',
+			'documento' 			=> 	'required|min:5|unique:personas',
 			'tipoDocumento' 		=>	'required',
 			'nombre'				=>	'required|min:2',
 			'apellido'				=>	'required|min:2',
 			'sexo' 					=>	'required',
 			'fechaNacimiento'		=>	'required',
 			'tipo'					=>	'required',
-			'establecimiento_id'					=>	'required'
+        	'establecimiento_id'	=>	'required',
+        	'grupoInvestigacion_id'	=>	$gi,
+        	'rol'					=>	$value,
+        	'grado'					=>	$value
+
 		];
 	
 	}

@@ -35,3 +35,8 @@
 </div>
 @endsection
 
+@section('scripts')
+
+   @include('personas.partials.scripts')
+
+@endsection

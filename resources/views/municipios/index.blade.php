@@ -14,7 +14,7 @@
                               <tr>
                                 <th>#</th>
                                 <th>Nombre</th>
-                                <th>Nodo</th>
+                                <th>Ruta</th>
                               </tr>
                           </thead>
                           <tbody>
@@ -22,7 +22,7 @@
                               <tr>
                                 <td>{{ $municipio->id }}</td>
                                 <td><a href="municipios/{{ $municipio->id }}/edit">{{ $municipio->nombre }}</a></td>
-                                <td>{{ $municipio->nodo }}</td>
+                                <td>{{ $municipio->ruta }}</td>
                               </tr> 
                             @endforeach
                           </tbody>
