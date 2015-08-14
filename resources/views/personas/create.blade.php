@@ -23,7 +23,7 @@
                           <a class="btn btn-warning" href="{!! url('personas') !!}" role="button">Cancelar</a>
                           {!! Form::submit("Registrar", ['class' => 'btn btn-success']) !!}
                       </div>
-                  w
+                  
                   {!! Form::close() !!}
 
                 </div> 
@@ -41,19 +41,27 @@
 $(document).ready(function(){
 
     $("#establecimiento_id" ).change(function(e) {
-
       //console.log(e);
       var ee_id = e.target.value;
+      //ajax
+      $.get('/ajax-gi?ee_id=' + ee_id,function (data) { 
+          // succes data
+          $("#grupoInvestigacion_id").empty();
+          $.each(data,function(i, gi_Obj){
+              $("#grupoInvestigacion_id").append('"<option value ="' + gi_Obj.id +'">' + gi_Obj.nombre + '</option>');
+          });
+      },'json');  
 
-        //ajax
-        $.get('/ajax-gi?ee_id=' + ee_id,function (data) { 
-            // succes data
-            $("#grupoInvestigacion_id").empty();
-            $.each(data,function(i, gi_Obj){
-                $("#grupoInvestigacion_id").append('"<option value ="' + gi_Obj.id +'">' + gi_Obj.nombre + '</option>');
-            });
-        },
-        'json');  
+    });
+
+    $("#tipo").change(function(e){
+      //console.log(e);
+      var tipo = e.target.value;
+      if( tipo == "estudiante" || tipo == "investigador"){
+          $("#panel-gi").show();
+      } else {
+        $("#panel-gi").hide();
+      }
 
     });
   

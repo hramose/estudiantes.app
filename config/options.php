@@ -8,10 +8,11 @@ return array(
     ],
 
     'tipos' =>[
-        ''                  => 'Seleccionar un tipo',
-        'estudiante'        => 'Estudiante',
+        'estudiante'        => 'Estudiante Investigador',
         'docente'           => 'Docente',
-        'co-investigador'   => 'Docente Investigador',
+        'investigador'      => 'Docente Investigador',
+        'co-investigador'   => 'Docente Coinvestigador',
+        'acompanante'       => 'Docente Investigador - Acompañante',
         'jefearea'          => 'Jede de Area',
         'coordinador'       => 'Coordinador',
         'rector'            => 'Rector'

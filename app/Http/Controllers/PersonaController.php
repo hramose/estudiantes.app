@@ -49,7 +49,7 @@ class PersonaController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create(Request $request)
+	public function create()
 	{
 		//
 		//$asesores = Asesor::where('user_id',$user->id)->get();

@@ -76,21 +76,28 @@
 
                     <div class="form-group">
                           {!! Form::label('tipo', 'Tipo usuario:') !!}
-                          {!! Form::select('tipo', withEmpty(config('options.tipos')),null, ['class' => 'form-control', 'required' => 'required',]) !!}
+                          {!! Form::select('tipo', withEmpty(config('options.tipos'),'...'),null, ['class' => 'form-control', 'required' => 'required',]) !!}
                           <small class="text-danger">{{ $errors->first('tipo') }}</small>
                      </div>
 
-                    <div class="form-group">
-                          {!! Form::label('grupoInvestigacion_id', 'Grupo de Investigaci&oacute;n:') !!}
-                          <select name="grupoInvestigacion_id" id="grupoInvestigacion_id" class="form-control"></select>
-                          <small class="text-danger">{{ $errors->first('grupoInvestigacion_id') }}</small>
-                     </div>
+                    <div class="panel panel-default" id="panel-gi" style="display:none;">
+                      <div class="panel-body">
 
-                    <div class="form-group">
-                          {!! Form::label('rol', 'Rol en el Grupo de Investigación:') !!}
-                          {!! Form::select('rol',withEmpty(config('options.roles'),'...'),null, ['class' => 'form-control', 'required' => 'required']) !!}
-                          <small class="text-danger">{{ $errors->first('rol') }}</small>
-                     </div>
+                          <div class="form-group">
+                                {!! Form::label('grupoInvestigacion_id', 'Grupo de Investigaci&oacute;n:') !!}
+                                <select name="grupoInvestigacion_id" id="grupoInvestigacion_id" class="form-control"></select>
+                                <small class="text-danger">{{ $errors->first('grupoInvestigacion_id') }}</small>
+                           </div>
+
+                          <div class="form-group">
+                                {!! Form::label('rol', 'Rol:') !!}
+                                {!! Form::select('rol',withEmpty(config('options.roles'),'...'),null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                <small class="text-danger">{{ $errors->first('rol') }}</small>
+                           </div>
+
+                      </div>
+                    </div>
+
 
                 </div>
 

@@ -33,6 +33,7 @@
                                 <th>Telefono</th>
                                 <th>Correo</th>
                                 <th>Fecha de Nacimiento</th>
+                                <th>Establecimiento</th>
                                 <th>Acciones</th>
                               </tr>
                           </thead>
@@ -46,6 +47,7 @@
                                 <td>{{ $persona->telefono }}</td>
                                 <td>{{ $persona->correo }}</td>
                                 <td>{{ $persona->fechaNacimiento }}</td>
+                                <td>{{ $persona->participante->establecimiento->nombre }}</td>
                                 <td><a href="personas/{{ $persona->id }}/edit">Editar</a></td>
                                </tr> 
                             @endforeach

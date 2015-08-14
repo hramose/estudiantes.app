@@ -15,7 +15,7 @@
                   
                   {!! Form::model($persona,['method' => 'PATCH', 'route' => ['personas.update',$persona->id], 'class' => 'form-horizontal col-md-11']) !!}
                   
-                  @include('personas.partials.form');
+                  @include('personas.partials.form')
 
                   <div class="col-md-12">               
 
