@@ -1,6 +1,12 @@
 <?php
 
 return array(
+    'tiposdoc' =>[
+        'TI'  => 'Tarjeta de Identidad',
+        'CC'  => 'Cedula de Ciudadania',
+        'RC'  => 'Registro civil'
+    ],
+
     'tipos' =>[
         ''                  => 'Seleccionar un tipo',
         'estudiante'        => 'Estudiante',
@@ -9,10 +15,7 @@ return array(
         'jefearea'          => 'Jede de Area',
         'coordinador'       => 'Coordinador',
         'rector'            => 'Rector'
-    ]
-);
-
-return array(
+    ],
 
     'roles' => [
         ''                      => 'Seleccionar un rol',

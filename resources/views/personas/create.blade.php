@@ -14,7 +14,8 @@
 
                   
                   {!! Form::open(['method' => 'POST', 'route' => 'personas.store', 'class' => 'form-horizontal col-md-11']) !!}
-                  @include('personas.partials.form');
+
+                  @include('personas.partials.form')
 
                   <div class="col-md-12">              
 
@@ -22,7 +23,7 @@
                           <a class="btn btn-warning" href="{!! url('personas') !!}" role="button">Cancelar</a>
                           {!! Form::submit("Registrar", ['class' => 'btn btn-success']) !!}
                       </div>
-                  
+                  w
                   {!! Form::close() !!}
 
                 </div> 
@@ -41,21 +42,18 @@ $(document).ready(function(){
 
     $("#establecimiento_id" ).change(function(e) {
 
-      console.log(e);
-
+      //console.log(e);
       var ee_id = e.target.value;
 
         //ajax
-        $.get('/ajax-gi?ee_id=' + ee_id,function (data) {
-            
+        $.get('/ajax-gi?ee_id=' + ee_id,function (data) { 
             // succes data
-            alert(data);
             $("#grupoInvestigacion_id").empty();
-
             $.each(data,function(i, gi_Obj){
                 $("#grupoInvestigacion_id").append('"<option value ="' + gi_Obj.id +'">' + gi_Obj.nombre + '</option>');
             });
-        });
+        },
+        'json');  
 
     });
   

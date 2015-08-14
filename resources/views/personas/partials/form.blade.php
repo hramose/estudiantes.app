@@ -6,7 +6,7 @@
 
                       <div class="form-group">
                           {!! Form::label('tipoDocumento', 'Tipo de documento:') !!}
-                          {!! Form::select('tipoDocumento',[ ''=>'','TI'=>'Tarjeta de Identidad','CC'=>'Cedula de Ciudadan&iacute;a','RC'=>'Registro Civil'], null, ['class' => 'form-control', 'required' => 'required']) !!}
+                          {!! Form::select('tipoDocumento',withEmpty(config('options.tiposdoc'),'...'), null, ['class' => 'form-control', 'required' => 'required']) !!}
                           <small class="text-danger">{{ $errors->first('tipoDocumento') }}</small>
                       </div>
 
@@ -70,13 +70,13 @@
 
                       <div class="form-group">
                           {!! Form::label('establecimiento_id', 'Establecimiento:') !!}
-                          {!! Form::select('establecimiento_id', $establecimientos , null, ['class' => 'form-control', 'required' => 'required']) !!}
+                          {!! Form::select('establecimiento_id', withEmpty($establecimientos,'...') , null, ['class' => 'form-control', 'required' => 'required']) !!}
                           <small class="text-danger">{{ $errors->first('establecimiento_id') }}</small>
                       </div>
 
                     <div class="form-group">
                           {!! Form::label('tipo', 'Tipo usuario:') !!}
-                          {!! Form::select('tipo', config('options.tipos'),null, ['class' => 'form-control', 'required' => 'required',]) !!}
+                          {!! Form::select('tipo', withEmpty(config('options.tipos')),null, ['class' => 'form-control', 'required' => 'required',]) !!}
                           <small class="text-danger">{{ $errors->first('tipo') }}</small>
                      </div>
 
@@ -88,7 +88,7 @@
 
                     <div class="form-group">
                           {!! Form::label('rol', 'Rol en el Grupo de Investigación:') !!}
-                          {!! Form::select('rol',config('options.tipos'),null, ['class' => 'form-control', 'required' => 'required']) !!}
+                          {!! Form::select('rol',withEmpty(config('options.roles'),'...'),null, ['class' => 'form-control', 'required' => 'required']) !!}
                           <small class="text-danger">{{ $errors->first('rol') }}</small>
                      </div>
 
@@ -97,7 +97,7 @@
                 <div class="col-md-12"> 
 
                       <div class="form-group">
-                         {!! Form::label('observaciones', 'Observaciones:') !!}
+                         {!! Form::label('observaciones', 'Observaciones :') !!}
                          {!! Form::textarea('observaciones', null, ['class' => 'form-control', 'required' => 'required','rows'=>'3']) !!}
                          <small class="text-danger">{{ $errors->first('observaciones') }}</small>
                       </div>  
