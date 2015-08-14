@@ -4,11 +4,8 @@ use App\Http\Requests;
 use App\Http\Requests\PersonaRequest;
 use App\Http\Controllers\Controller;
 
-use App\Http\Controllers\Response;
-
 use Auth;
 use App\Persona;
-use App\Participante;
 use App\Asesor;
 use App\Establecimiento;
 use App\GrupoInvestigacion;
@@ -26,9 +23,7 @@ class PersonaController extends Controller {
 
 	{
 		//
-		$personas = Persona::documento($request->get('documento'))->whereHas('participante',function($q){
-
-			$q->whereHas('establecimiento',function($q){
+		$personas = Persona::documento($request->get('documento'))->whereHas('establecimiento',function($q){
 
 				$q->whereHas('asesor', function($q){	
 				
@@ -36,7 +31,6 @@ class PersonaController extends Controller {
 						$q->where('user_id', $user->id);
 		
 				});
-			});
 		
 		})->paginate();
 		

@@ -24,8 +24,15 @@ class CreatePersonasTable extends Migration {
 			$table->string('correo')->nullable();
 			$table->string('lugarNacimiento')->nullable();
 			$table->date('fechaNacimiento');
-			$table->string('observaciones',1000)->nullable();
+			$table->string('observaciones',500)->nullable();
+			$table->string('tipo');
+			$table->string('grado')->nullable();
+			$table->integer('establecimiento_id')->unsigned();
 			$table->timestamps();
+
+
+			$table->foreign('establecimiento_id')->references('id')->on('establecimientos')->onUpdate('cascade');
+
 		});
 	}
 

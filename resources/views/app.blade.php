@@ -35,7 +35,7 @@
 				<ul class="nav navbar-nav">
 					<li><a href="{!! url('/home') !!}">Inicio</a></li>
 					<li><a href="{!! url('/personas') !!}">Personas</a></li>
-					<li><a href="{!! url('/participantes') !!}">Participantes</a></li>
+					<li><a href="{!! url('#') !!}">Convocatorias</a></li>
 					<li><a href="{!! url('/grupo_investigaciones') !!}">Grupos de Investigaci&oacute;n</a></li>
 					<li><a href="{!! url('/establecimientos') !!}">Establecimientos</a></li>			
 					<li><a href="{!! url('/municipios') !!}">Municipios</a></li>

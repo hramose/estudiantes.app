@@ -16,8 +16,8 @@ class CreateInvestigadoresTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('grupoInvestigacion_id')->unsigned();
-			$table->integer('participante_id')->unsigned();
-			$table->enum('rolInvestigador',['Estudiante Lider','Docentes Lider']);
+			$table->integer('persona_id')->unsigned();
+			$table->string('rol');
 			$table->timestamps();
 
 			$table->foreign('grupoInvestigacion_id')
@@ -25,8 +25,8 @@ class CreateInvestigadoresTable extends Migration {
 				->onDelete('cascade')
 				->onUpdate('cascade');
 
-			$table->foreign('participante_id')
-				->references('id')->on('participantes')
+			$table->foreign('persona_id')
+				->references('id')->on('personas')
 				->onDelete('cascade')
 				->onUpdate('cascade');
 		});

@@ -3,9 +3,8 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            
-            
+        <div class="col-md-12">
+           
             <div class="panel panel-default">
                 <div class="panel-heading">Personas</div>
                 <div class="panel-body ">
@@ -33,6 +32,7 @@
                                 <th>Telefono</th>
                                 <th>Correo</th>
                                 <th>Fecha de Nacimiento</th>
+                                <th>Tipo de Usuario</th>
                                 <th>Establecimiento</th>
                                 <th>Acciones</th>
                               </tr>
@@ -47,7 +47,8 @@
                                 <td>{{ $persona->telefono }}</td>
                                 <td>{{ $persona->correo }}</td>
                                 <td>{{ $persona->fechaNacimiento }}</td>
-                                <td>{{ $persona->participante->establecimiento->nombre }}</td>
+                                <td>{{ $persona->tipo }}</td>
+                                <td>{{ $persona->establecimiento->nombre }}</td>
                                 <td><a href="personas/{{ $persona->id }}/edit">Editar</a></td>
                                </tr> 
                             @endforeach

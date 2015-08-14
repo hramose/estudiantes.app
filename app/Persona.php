@@ -17,13 +17,40 @@ class Persona extends Model {
      *
      * @var array
      */
-    protected $fillable = ['documento', 'tipoDocumento','nombre','apellido','sexo' , 'telefono','correo','lugarNacimiento','fechaNacimiento','observaciones'];
+    protected $fillable = [
+        'documento',
+        'tipoDocumento',
+        'nombre',
+        'apellido',
+        'sexo' , 
+        'telefono',
+        'correo',
+        'lugarNacimiento',
+        'fechaNacimiento',
+        'observaciones',
+        'tipo',
+        'grado',
+        'establecimiento_id'
+        ];
 
 
     public function participante(){
 
        return $this->hasMany('App\Participante');
     }
+
+    public function establecimiento(){
+       return $this->belongsTo('App\Establecimiento');
+    }
+
+    public function investigador(){
+
+        return $this->hasOne('App\Investigador');
+    }
+
+    /*
+    * Custom functions
+    */
 
     public function getFullNameAttribute(){
 

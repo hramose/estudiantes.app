@@ -18,11 +18,11 @@ class Investigador extends Model {
      *
      * @var array
      */
-    protected $fillable = ['grupoInvestigacion_id', 'participante_id'];
+    protected $fillable = ['grupoInvestigacion_id', 'persona_id'];
 
-    public function participante(){
+    public function Persona(){
 
-        return $this->belongsTo('App\Participante');
+        return $this->belongsTo('App\Persona');
 
     }
 

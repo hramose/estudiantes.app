@@ -29,7 +29,7 @@ class MunicipioTableSeeder extends Seeder {
 
 			$municipio = Municipio::create([
 				'nombre'	=> 	$faker->unique()->city,
-				'nodo' 		=>	$faker->numberBetween($min = 1, $max = 3)
+				'ruta' 		=>	$faker->numberBetween($min = 1, $max = 3)
 
 				]);
 
@@ -70,15 +70,10 @@ class MunicipioTableSeeder extends Seeder {
 								'correo'			=>	$faker->freeEmail,
 								'lugarNacimiento'	=> 	$faker->city,
 								'fechaNacimiento'	=>	$faker->date($format = 'Y-m-d', $max = 'now'),
-								'observaciones'		=>	$faker->sentence($nbWords = 6)
+								'observaciones'		=>	$faker->sentence($nbWords = 6),
+								'tipo'				=>	'estudiante',
+								'establecimiento_id'=>	$i + 1
 							]);
-
-				 Participante::create([
-				 	'persona_id'			=>	$personas->id,
-				 	'establecimiento_id'	=>	$faker->numberBetween($min = 1, $max = 5),
-				 	'tipo'					=>	'estudiante'
-
-					]);
 
 				Asesor::create([
 					'user_id' 				=>	'1',

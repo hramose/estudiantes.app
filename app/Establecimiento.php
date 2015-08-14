@@ -34,8 +34,8 @@ class Establecimiento extends Model {
     }
 
 
-    public function participante(){
-       return $this->hasMany('App\Participante','establecimiento_id');
+    public function persona(){
+       return $this->hasMany('App\Persona','establecimiento_id');
     }
 
 }

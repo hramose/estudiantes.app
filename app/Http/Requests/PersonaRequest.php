@@ -28,9 +28,11 @@ class PersonaRequest extends Request {
 			'nombre'				=>	'required|min:2',
 			'apellido'				=>	'required|min:2',
 			'sexo' 					=>	'required',
-			'fechaNacimiento'		=>	'required'
-
+			'fechaNacimiento'		=>	'required',
+			'tipo'					=>	'required',
+			'establecimiento_id'					=>	'required'
 		];
+	
 	}
 
 }

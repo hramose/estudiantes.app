@@ -16,13 +16,13 @@ class CreateParticipantesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('persona_id')->unsigned();
-			$table->integer('establecimiento_id')->unsigned();
-			$table->string('tipo');
-			$table->string('grado')->nullable();
+			$table->integer('convocatoria_id')->unsigned();
+			$table->string('hospedaje');
+			$table->string('desplazamiento');
 			$table->timestamps();
 
 			$table->foreign('persona_id')->references('id')->on('personas')->onUpdate('cascade')->onDelete('cascade');
-			$table->foreign('establecimiento_id')->references('id')->on('establecimientos')->onUpdate('cascade');
+			$table->foreign('convocatoria_id')->references('id')->on('convocatorias')->onUpdate('cascade');
 			
 		});
 	}

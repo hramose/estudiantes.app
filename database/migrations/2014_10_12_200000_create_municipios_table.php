@@ -16,7 +16,7 @@ class CreateMunicipiosTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('nombre')->unique();
-			$table->enum('nodo',['1','2','3']);
+			$table->enum('ruta',['1','2','3']);
 			$table->timestamps();
 		});
 	}

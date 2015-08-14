@@ -12,19 +12,14 @@ class Participante extends Model {
      *
      * @var array
      */
-    protected $fillable = ['persona_id','establecimiento_id','rol'];
+    protected $fillable = ['persona_id','convocatoria_id'];
 
     public function persona(){
        return $this->belongsTo('App\Persona');
     }
 
-    public function establecimiento(){
-       return $this->belongsTo('App\Establecimiento');
-    }
-
-    public function investigador(){
-
-        return $this->hasOne('App\Investigador');
+    public function convocatoria(){
+       return $this->belongsTo('App\Convocatoria');
     }
 
 
