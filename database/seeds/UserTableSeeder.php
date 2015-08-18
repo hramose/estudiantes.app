@@ -15,9 +15,10 @@ class UserTableSeeder extends Seeder {
 	public function run()
 	{
 		User::create([
-			'name'=>'Osmell Caicedo',
-			'email'=>'correo@algo.com',
-			'password'=>\Hash::make('secret')
+			'name'		=>'Osmell Caicedo',
+			'email'		=>'correo@algo.com',
+			'password'	=>\Hash::make('secret'),
+			'type'		=>'2'
 			]);
 		
 		// $this->call('UserTableSeeder');

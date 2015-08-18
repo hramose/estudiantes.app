@@ -13,7 +13,7 @@
                   <div class="col-md-6">
 
                   
-                  {!! Form::model($persona->toArray(),['method' => 'PATCH', 'route' => ['participantes.update',$persona->id], 'class' => 'form-horizontal col-md-11']) !!}
+                  {!! Form::model($participante->toArray(),['method' => 'PATCH', 'route' => ['participantes.update',$participante->id], 'class' => 'form-horizontal col-md-11']) !!}
                   
                   @include('participantes.partials.form')
                   @include('participantes.partials.edit_form')

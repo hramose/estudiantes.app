@@ -33,18 +33,20 @@
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="{!! url('/home') !!}">Inicio</a></li>
-
 					@if(Auth::check())
-
-					<li><a href="{!! url('/participantes') !!}">Participantes</a></li>
-					{{-- <li><a href="{!! url('#') !!}">Convocatorias</a></li> --}}
-					<li><a href="{!! url('/grupo_investigaciones') !!}">Grupos de Investigaci&oacute;n</a></li>
-					<li><a href="{!! url('/establecimientos') !!}">Establecimientos</a></li>			
-					<li><a href="{!! url('/municipios') !!}">Municipios</a></li>
-					<li><a href="{!! url('/asesores') !!}">Asesores</a></li>
-					{{-- <li><a href="{!! url('/asesores') !!}">Reportes</a></li> --}}
+						
+						<li><a href="{!! url('/home') !!}">Inicio</a></li>
+						<li><a href="{!! url('/participantes') !!}">Participantes</a></li>
 					
+						@if(Auth::user()->type == '1')				
+							{{-- <li><a href="{!! url('#') !!}">Convocatorias</a></li> --}}
+							<li><a href="{!! url('/grupo_investigaciones') !!}">Grupos de Investigaci&oacute;n</a></li>
+							<li><a href="{!! url('/establecimientos') !!}">Establecimientos</a></li>			
+							<li><a href="{!! url('/municipios') !!}">Municipios</a></li>
+							<li><a href="{!! url('/asesores') !!}">Asesores</a></li>
+							{{-- <li><a href="{!! url('/asesores') !!}">Reportes</a></li> --}}
+						@endif
+
 					@endif
 					
 

@@ -53,7 +53,7 @@ class ParticipanteRequest extends Request {
 
 	            return [
 				//
-					'documento' 							=> 	'required|min:5|unique:personas,documento',
+					'documento' 							=> 	'required|min:5|unique:participantes,documento',
 					'nombre'								=>	'required|min:2',
 					'apellido'								=>	'required|min:2',
 					'sexo' 									=>	'required',
@@ -73,7 +73,7 @@ class ParticipanteRequest extends Request {
 
 	            return [
 				//
-					'documento' 							=> 	'required|min:5|unique:personas,documento,'.$participante->id,
+					'documento' 							=> 	'required|min:5|unique:participantes,documento,'.$participante->id,
 					'nombre'								=>	'required|min:2',
 					'apellido'								=>	'required|min:2',
 					'sexo' 									=>	'required',

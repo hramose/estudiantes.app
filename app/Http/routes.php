@@ -1,7 +1,6 @@
 <?php
 
 
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -16,17 +15,20 @@
 // Route::get('/', 'WelcomeController@index');
 Route::get('/', 'HomeController@index');
 Route::get('home', 'HomeController@index');
+Resource('participantes','ParticipanteController');
+Route::get('ajax-gi','GrupoInvestigacionController@ajax_gi');
+
+Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function()
+{
+        // can only access this if type == A
+        resource('municipios','MunicipioController');
+        resource('establecimientos','EstablecimientoController');
+        resource('grupo_investigaciones','GrupoInvestigacionController');
+        resource('asesores','AsesorController');
+
+});
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
-
-resource('municipios','MunicipioController');
-resource('establecimientos','EstablecimientoController');
-resource('grupo_investigaciones','GrupoInvestigacionController');
-resource('asesores','AsesorController');
-resource('participantes','ParticipanteController');
-
-Route::get('ajax-gi','GrupoInvestigacionController@ajax_gi');
-

@@ -15,6 +15,17 @@ use Illuminate\Http\Request;
 
 class ParticipanteController extends Controller {
 
+
+	/**
+	 * Create a new controller instance.
+	 *
+	 * @return void
+	 */
+	public function __construct()
+	{
+		$this->middleware('auth');
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -29,8 +40,7 @@ class ParticipanteController extends Controller {
 						$q->whereHas('grupoInvestigacion',function($q){
 							$q->whereHas('establecimiento',function($q){
 								$q->whereHas('asesor', function($q){
-									$user = Auth::user();
-									$q->where('user_id', $user->id);
+									$q->where('user_id', Auth::user()->id);
 								});
 							});
 						});
@@ -52,8 +62,7 @@ class ParticipanteController extends Controller {
 		//$asesores = Asesor::where('user_id',$user->id)->get();
 
 		$establecimientos = Establecimiento::whereHas('asesor', function($q){
-			$user = Auth::user();
-			$q->where('user_id', $user->id);
+			$q->where('user_id', Auth::user()->id);
 		})->lists('nombre','id');
 		
 		return view('participantes.create',compact('establecimientos'));
@@ -113,11 +122,10 @@ class ParticipanteController extends Controller {
 		$participante = Participante::with('investigador')->find($id);
 
 		$establecimientos = Establecimiento::with('grupoInvestigacion')->whereHas('asesor', function($q){
-			$user = Auth::user();
-			$q->where('user_id', $user->id);
+			$q->where('user_id', Auth::user()->id);
 		})->lists('nombre','id');
 
-		$grupoInvestigaciones = GrupoInvestigacion::where('establecimiento_id',$persona->establecimiento_id)->lists('nombre','id');
+		$grupoInvestigaciones = GrupoInvestigacion::where('establecimiento_id',$participante->establecimiento_id)->lists('nombre','id');
 		
 
 		return view('participantes.edit',compact('participante','establecimientos','grupoInvestigaciones'));
