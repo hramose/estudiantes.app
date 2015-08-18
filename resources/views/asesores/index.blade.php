@@ -9,13 +9,16 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Asesores de L&iacute;nea</div>
                 <div class="panel-body ">
+                    <div class="btn-group pull-left">
+                        <a class="btn btn-info" href="{!! url('asesores/create')!!}" role="button">Nuevo</a>          
+                    </div> 
                     <table class="table table-striped table-hover">
                           <thead>
                               <tr>
                                 <th>Nombre</th>
                                 <th>Establecimientos</th>
                                 <th>Municipios</th>
-                                <th>Nodo</th>
+                                <th>Ruta</th>
                               </tr>
                           </thead>
                           <tbody>
@@ -24,16 +27,12 @@
                                 <td><a href="asesores/"{{ $asesor->id }} "/show"> {{ $asesor->user->name }}</a></td>
                                 <td>{{ $asesor->establecimiento->count()}}</td>
                                 <td>{{ $asesor->establecimiento->municipio->count() }}</td>
-                                <td>{{ $asesor->establecimiento->municipio->nodo }}</td>
+                                <td>{{ $asesor->establecimiento->municipio->ruta }}</td>
                               </tr> 
                             @endforeach
                           </tbody>
                       </table> 
-                      {!! $asesores->render() !!}
-
-                    <div class="btn-group pull-right">
-                        <a class="btn btn-info" href="{!! url('asesores/create')!!}" role="button">Nuevo</a>          
-                    </div>           
+                      {!! $asesores->render() !!}          
                 </div>
             </div>
         </div>

@@ -9,23 +9,7 @@
                 <div class="panel-body ">
                     {!! Form::model($grupo_investigacion,['method' => 'PATCH', 'route' => ['grupo_investigaciones.update',$grupo_investigacion->id], 'class' => 'form-horizontal col-md-6']) !!}
                 
-                    <div class="form-group">
-                        {!! Form::label('nombre', 'Grupo de Investigaci&oacute;n:') !!}
-                        {!! Form::text('nombre', null, ['class' => 'form-control', 'required' => 'required']) !!}
-                        <small class="text-danger"> {{ $errors->first('nombre') }}</small>
-                    </div>  
-
-                     <div class="form-group">
-                        {!! Form::label('codigoCV', 'C&oacute;digo de Comunidad Virtual:') !!}
-                        {!! Form::text('codigoCV', null, ['class' => 'form-control', 'required' => 'required']) !!}
-                        <small class="text-danger"> {{ $errors->first('dane') }}</small>
-                    </div>  
-
-                    <div class="form-group">
-                      {!! Form::label('establecimiento_id', 'Municipio:') !!}
-                      {!! Form::select('establecimiento_id',[ $establecimientos ],null, ['class' => 'form-control', 'required' => 'required']) !!}
-                      <small class="text-danger">{{ $errors->first('establecimiento_id') }}</small>
-                    </div>                                  
+                    @include('grupo_investigaciones.partials.form')                                
                     <div class="btn-group pull-right">
                         <a class="btn btn-warning" href="{!! url('grupo_investigaciones') !!}" role="button">Cancelar</a>          
                         {!! Form::submit("Actualizar", ['class' => 'btn btn-success']) !!}

@@ -25,16 +25,20 @@ class PersonaController extends Controller {
 	{
 		//
 		$personas = Persona::documento($request->get('documento'))
-					->with('investigador')
-					->whereHas('establecimiento',function($q){
-							$q->whereHas('asesor', function($q){
-								$user = Auth::user();
-								$q->where('user_id', $user->id);
+					->whereHas('investigador',function($q){
+						$q->whereHas('grupoInvestigacion',function($q){
+							$q->whereHas('establecimiento',function($q){
+								$q->whereHas('asesor', function($q){
+									$user = Auth::user();
+									$q->where('user_id', $user->id);
+								});
 							});
-						})->paginate();
-		
+						});
+					})->paginate();
+	
 		//foreach ($personas as $persona) {dd($persona->investigador->grupoInvestigacion->first()->nombre); }
 		return view('personas.index',compact('personas'));
+		//dd($personas);
 	}
 
 	/**
@@ -106,17 +110,20 @@ class PersonaController extends Controller {
 	public function edit($id)
 	{
 		//
-		$persona = Persona::find($id);
+		$persona = Persona::with('investigador')->find($id);
 
 		$establecimientos = Establecimiento::with('grupoInvestigacion')->whereHas('asesor', function($q){
 			$user = Auth::user();
 			$q->where('user_id', $user->id);
 		})->lists('nombre','id');
+
+		$grupoInvestigaciones = GrupoInvestigacion::where('establecimiento_id',$persona->establecimiento_id)->lists('nombre','id');
 		
 		//$establecimientosLists = $establecimientos->lists('nombre','id');
 
-		return view('personas.edit',compact('persona','establecimientos'));
-		//dd($investigador);
+		return view('personas.edit',compact('persona','establecimientos','grupoInvestigaciones'));
+		//dd($persona->investigador->grupoInvestigacion_id);
+		
 	}
 
 	/*
@@ -125,7 +132,7 @@ class PersonaController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id,Request	$request)
+	public function update($id,PersonaRequest $request)
 	{
 		//
 

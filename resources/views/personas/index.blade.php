@@ -6,7 +6,7 @@
         <div class="col-md-10 col-md-offset-1">
            
             <div class="panel panel-default">
-                <div class="panel-heading">Personas</div>
+                <div class="panel-heading">Participantes: {{ $personas->count()}}</div>
                 <div class="panel-body ">
                      <div class="btn-group pull-left">
                         <a class="btn btn-info" href="{!! url('personas/create')!!}" role="button">Nuevo</a>          
@@ -46,7 +46,7 @@
                                 <td>{{ $persona->fechaNacimiento }}</td>
                                 <td>{{ $persona->tipo }}</td>
                                 <td>{{ $persona->establecimiento->nombre }}</td>
-                                <td>{{ $persona->investigador->grupoInvestigacion->first()->nombre }}</td>
+                                <td>{{ $persona->investigador->grupoInvestigacion->nombre}}</td>
                                 <td><a href="personas/{{ $persona->id }}/edit">Editar</a></td>
                                </tr> 
                             @endforeach

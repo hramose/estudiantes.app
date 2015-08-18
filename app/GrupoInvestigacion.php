@@ -25,7 +25,7 @@ class GrupoInvestigacion extends Model {
 
     public function investigador(){
 
-        return $this->belongsTo('App\Investigador');
+        return $this->hasMany('App\Investigador');
     }
 
 }

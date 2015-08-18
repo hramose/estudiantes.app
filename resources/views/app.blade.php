@@ -34,22 +34,26 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a href="{!! url('/home') !!}">Inicio</a></li>
-					<li><a href="{!! url('/personas') !!}">Personas</a></li>
-					<li><a href="{!! url('#') !!}">Convocatorias</a></li>
+
+					@if(Auth::check())
+
+					<li><a href="{!! url('/personas') !!}">Participantes</a></li>
+					{{-- <li><a href="{!! url('#') !!}">Convocatorias</a></li> --}}
 					<li><a href="{!! url('/grupo_investigaciones') !!}">Grupos de Investigaci&oacute;n</a></li>
 					<li><a href="{!! url('/establecimientos') !!}">Establecimientos</a></li>			
 					<li><a href="{!! url('/municipios') !!}">Municipios</a></li>
 					<li><a href="{!! url('/asesores') !!}">Asesores</a></li>
-					<li><a href="{!! url('/asesores') !!}">Reportes</a></li>
-
-
+					{{-- <li><a href="{!! url('/asesores') !!}">Reportes</a></li> --}}
+					
+					@endif
+					
 
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
 					@if (Auth::guest())
 						<li><a href="{!! url('/auth/login') !!}">Ingresar</a></li>
-						<li><a href="{!! url('/auth/register') !!}">Registro</a></li>
+						{{-- <li><a href="{!! url('/auth/register') !!}">Registro</a></li> --}}
 					@else
 						<li class="dropdown">
 							<a href="{!! url('#') !!}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>

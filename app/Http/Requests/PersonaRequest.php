@@ -1,6 +1,7 @@
 <?php namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
+use App\Persona;
 
 class PersonaRequest extends Request {
 
@@ -21,33 +22,73 @@ class PersonaRequest extends Request {
 	 */
 	public function rules()
 	{
-		$gi = "";
-		$value = "";
+		$persona = Persona::find($this->personas);
+		$gi = $value = "";
 
-		if(Request::get('tipo') == "estudiante"){
+		switch($this->get('tipo'))
+        {
+            case 'estudiante':
+            {
+                $gi = $value = 'required';
+            }
+            case 'coinvestigador':
+            case 'acompanante':
+            {
+                $gi = 'required';
+            }
 
-            $gi = 'required';
-            $value = 'required';
+            default:break;
 
-		} else if(Request::get('tipo') == "coinvestigador" OR Request::get('tipo') == "acompanante"){
-            $gi = 'required';
         }
 
-		return [
-			//
-			'documento' 			=> 	'required|min:5|unique:personas',
-			'tipoDocumento' 		=>	'required',
-			'nombre'				=>	'required|min:2',
-			'apellido'				=>	'required|min:2',
-			'sexo' 					=>	'required',
-			'fechaNacimiento'		=>	'required',
-			'tipo'					=>	'required',
-        	'establecimiento_id'	=>	'required',
-        	'grupoInvestigacion_id'	=>	$gi,
-        	'rol'					=>	$value,
-        	'grado'					=>	$value
+	    switch($this->method())
+	    {
+	        case 'GET':
+	        case 'DELETE':
+	        {
+	            return [];
+	        }
+	        case 'POST':
+	        {
 
-		];
+	            return [
+				//
+					'documento' 							=> 	'required|min:5|unique:personas,documento',
+					'nombre'								=>	'required|min:2',
+					'apellido'								=>	'required|min:2',
+					'sexo' 									=>	'required',
+					'fechaNacimiento'						=>	'required|date',
+					'tipo'									=>	'required',
+		        	'establecimiento_id'					=>	'required',
+		        	'grupoInvestigacion_id'					=>	$gi,
+		        	'rol'									=>	$value,
+		        	'grado'									=>	$value
+
+				];
+	        }
+
+	        case 'PUT':
+	        case 'PATCH':
+	        {
+
+	            return [
+				//
+					'documento' 							=> 	'required|min:5|unique:personas,documento,'.$persona->id,
+					'nombre'								=>	'required|min:2',
+					'apellido'								=>	'required|min:2',
+					'sexo' 									=>	'required',
+					'fechaNacimiento'						=>	'required|date',
+					'tipo'									=>	'required',
+		        	'establecimiento_id'					=>	'required',
+		        	'grupoInvestigacion_id'					=>	$gi,
+		        	'rol'									=>	$value,
+		        	'grado'									=>	$value
+
+				];
+	        }
+
+	        default:break;
+	    }
 	
 	}
 

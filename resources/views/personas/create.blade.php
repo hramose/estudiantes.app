@@ -7,7 +7,7 @@
             
             
             <div class="panel panel-default">
-                <div class="panel-heading">Registrar persona</div>
+                <div class="panel-heading">Registrar participante</div>
                 <div class="panel-body ">
 
                   <div class="col-md-6">
@@ -16,6 +16,8 @@
                   {!! Form::open(['method' => 'POST', 'route' => 'personas.store', 'class' => 'form-horizontal col-md-11']) !!}
 
                   @include('personas.partials.form')
+                  @include('personas.partials.create_form')
+
 
                   <div class="col-md-12">              
 

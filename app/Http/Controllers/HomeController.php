@@ -37,14 +37,17 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{	
-		$personas = Persona::all()->count();
-		$participantes = Participante::all()->count();
-		$grupoInvestigaciones = GrupoInvestigacion::all()->count();
-		$establecimientos = Establecimiento::all()->count();
-		$municipios = Municipio::all()->count();
+		// $personas = Persona::all()->count();
+		// $participantes = Participante::all()->count();
+		// $grupoInvestigaciones = GrupoInvestigacion::all()->count();
+		// $establecimientos = Establecimiento::all()->count();
+		// $municipios = Municipio::all()->count();
 
 
-		return view('home',compact('personas','participantes','grupoInvestigaciones','establecimientos','municipios'));
+
+		// return view('home',compact('personas','participantes','grupoInvestigaciones','establecimientos','municipios'));
+
+		return redirect('personas');
 	}
 
 }

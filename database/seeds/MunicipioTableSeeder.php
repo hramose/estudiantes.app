@@ -53,7 +53,7 @@ class MunicipioTableSeeder extends Seeder {
 				GrupoInvestigacion::create([
 				'nombre'				=> 	$faker->unique()->streetName,
 				'codigoCV' 				=>	$faker->unique()->buildingNumber,
-				'establecimiento_id' 	=> 	$faker->numberBetween($min = 1, $max = 5)
+				'establecimiento_id' 	=> 	 $i + 1
 				]);
 
 		}
