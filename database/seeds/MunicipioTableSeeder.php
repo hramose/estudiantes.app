@@ -6,7 +6,7 @@ use App\Municipio;
 use App\Establecimiento;
 use App\GrupoInvestigacion;
 use App\Investigador;
-use App\Persona;
+use App\Participante;
 use App\Asesor;
 
 
@@ -60,7 +60,7 @@ class MunicipioTableSeeder extends Seeder {
 		for($i = 0; $i < 5; $i++)
 		{
 
-				$personas = Persona::create([
+				$participantes = Participante::create([
 								'documento'			=> 	$faker->unique()->randomNumber($nbDigits = NULL),
 								'tipoDocumento' 	=>	'TI',
 								'nombre' 			=> 	$faker->firstName,
@@ -76,7 +76,7 @@ class MunicipioTableSeeder extends Seeder {
 							]);
 
 				Investigador::create([
-					'persona_id'			=> 	$personas->id,
+					'participante_id'			=> 	$participantes->id,
 					'grupoInvestigacion_id'	=>	$i + 1,
 					'rol'					=>	$faker->randomElement(['estudiante','lider','tesorero']),
 					'grado'					=>	$faker->numberBetween($min = 1, $max = 5)

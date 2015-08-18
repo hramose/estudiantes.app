@@ -1,11 +1,11 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Http\Requests\PersonaRequest;
+use App\Http\Requests\ParticipanteRequest;
 use App\Http\Controllers\Controller;
 
 use Auth;
-use App\Persona;
+use App\Participante;
 use App\Investigador;
 use App\GrupoInvestigacion;
 use App\Establecimiento;
@@ -13,7 +13,7 @@ use App\Asesor;
 
 use Illuminate\Http\Request;
 
-class PersonaController extends Controller {
+class ParticipanteController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -24,7 +24,7 @@ class PersonaController extends Controller {
 
 	{
 		//
-		$personas = Persona::documento($request->get('documento'))
+		$participantes = Participante::documento($request->get('documento'))
 					->whereHas('investigador',function($q){
 						$q->whereHas('grupoInvestigacion',function($q){
 							$q->whereHas('establecimiento',function($q){
@@ -37,7 +37,7 @@ class PersonaController extends Controller {
 					})->paginate();
 	
 		//foreach ($personas as $persona) {dd($persona->investigador->grupoInvestigacion->first()->nombre); }
-		return view('personas.index',compact('personas'));
+		return view('participantes.index',compact('participantes'));
 		//dd($personas);
 	}
 
@@ -56,7 +56,7 @@ class PersonaController extends Controller {
 			$q->where('user_id', $user->id);
 		})->lists('nombre','id');
 		
-		return view('personas.create',compact('establecimientos'));
+		return view('participantes.create',compact('establecimientos'));
 			
 	}	
 
@@ -65,7 +65,7 @@ class PersonaController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(PersonaRequest $request)
+	public function store(ParticipanteRequest $request)
 	{
 		//$persona = Persona::create($request->all());
 		
@@ -77,16 +77,15 @@ class PersonaController extends Controller {
 				'grado'					=> $request->grado
 				]);
 
-			$persona = Persona::create($request->all());
-			
-			$investigador = $persona->investigador()->save($investigador);
+			$participante = Participante::create($request->all());
+			$investigador = $participante->investigador()->save($investigador);
 			
 		}else {
 			//only create Persona
-			$persona = Persona::create($request->all());
+			$participante = Participante::create($request->all());
 		}
 
-		return redirect('personas');
+		return redirect('participantes');
 
 	}
 
@@ -99,6 +98,7 @@ class PersonaController extends Controller {
 	public function show($id)
 	{
 		//
+	
 	}
 
 	/**
@@ -110,7 +110,7 @@ class PersonaController extends Controller {
 	public function edit($id)
 	{
 		//
-		$persona = Persona::with('investigador')->find($id);
+		$participante = Participante::with('investigador')->find($id);
 
 		$establecimientos = Establecimiento::with('grupoInvestigacion')->whereHas('asesor', function($q){
 			$user = Auth::user();
@@ -119,9 +119,8 @@ class PersonaController extends Controller {
 
 		$grupoInvestigaciones = GrupoInvestigacion::where('establecimiento_id',$persona->establecimiento_id)->lists('nombre','id');
 		
-		//$establecimientosLists = $establecimientos->lists('nombre','id');
 
-		return view('personas.edit',compact('persona','establecimientos','grupoInvestigaciones'));
+		return view('participantes.edit',compact('participante','establecimientos','grupoInvestigaciones'));
 		//dd($persona->investigador->grupoInvestigacion_id);
 		
 	}
@@ -132,20 +131,20 @@ class PersonaController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id,PersonaRequest $request)
+	public function update($id,ParticipanteRequest $request)
 	{
 		//
 
-		$persona = Persona::with('investigador')->find($id);
-	    $persona->fill($request->all());
-	    $persona->investigador->fill([
+		$participante = Participante::with('investigador')->find($id);
+	    $participante->fill($request->all());
+	    $participante->investigador->fill([
 			'grupoInvestigacion_id' => $request->grupoInvestigacion_id,
 			'rol'					=> $request->rol,
 			'grado'					=> $request->grado
 			]);
-	    $persona->push();
+	    $participante->push();
 
-	    return redirect('personas');
+	    return redirect('participantes');
 	}
 
 	/**
@@ -157,18 +156,11 @@ class PersonaController extends Controller {
 	public function destroy($id)
 	{
 		//
-		$persona = Persona::find($id);
-		$persona->delete();
+		$participante = Participante::find($id);
+		$participante->delete();
 
-		return redirect('personas');
+		return redirect('participantes');
 	}
 
-	public function ajax_gi(Request $request)
-	{
-		$grupoInvestigaciones = GrupoInvestigacion::where('establecimiento_id',$request->ee_id)->get()->toJson();
-		
-		return ($grupoInvestigaciones);
-
-	}
 
 }

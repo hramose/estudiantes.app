@@ -34,8 +34,8 @@ class AsesorController extends Controller {
 	public function create()
 	{
 		//
-		$establecimientos = [''=>''] + Establecimiento::lists('nombre','id');
-		$users= [''=>''] + User::lists('name','id');
+		$establecimientos = Establecimiento::lists('nombre','id');
+		$users = User::lists('name','id');
 
 		return view('asesores.create',compact('establecimientos','users'));
 	}
@@ -61,10 +61,10 @@ class AsesorController extends Controller {
 	public function show($id)
 	{
 		//
-		$asesor = Asesor::hasWhere('user_id','=',$id);
-		$establecimientos =  $asesor->establecimiento;
+		$asesores = Asesor::with('establecimiento')->where('user_id','=',$id)->get();
 
-		return view('asesores.show',compact('asesor','establecimientos'));
+		return view('asesores.show',compact('asesores'));
+		//dd($asesores);
 		
 	}
 
@@ -77,12 +77,12 @@ class AsesorController extends Controller {
 	public function edit($id)
 	{
 		//
-		$asesor = Asesor::find($id);
-		$establecimientos = [''=>''] + Establecimiento::lists('nombre','id');
-		$users = [''=>''] + User::lists('name','id');
+		$asesor = Asesor::with('establecimiento')->where('user_id','=',$id)->get();
+		$users = User::lists('name','id');
+		$establecimientos = Establecimiento::lists('nombre','id');
 
-
-		return view('asesores.edit',compact('asesor','establecimientos','users'));
+		//dd($asesor);
+		return view('asesores.edit',compact('asesor','users','establecimientos'));
 	}
 
 	/**

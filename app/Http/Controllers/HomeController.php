@@ -1,6 +1,5 @@
 <?php namespace App\Http\Controllers;
 
-use App\Persona;
 use App\Participante;
 use App\GrupoInvestigacion;
 use App\Establecimiento;
@@ -37,7 +36,6 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{	
-		// $personas = Persona::all()->count();
 		// $participantes = Participante::all()->count();
 		// $grupoInvestigaciones = GrupoInvestigacion::all()->count();
 		// $establecimientos = Establecimiento::all()->count();
@@ -45,9 +43,9 @@ class HomeController extends Controller {
 
 
 
-		// return view('home',compact('personas','participantes','grupoInvestigaciones','establecimientos','municipios'));
+		// return view('home',compact('participantes','grupoInvestigaciones','establecimientos','municipios'));
 
-		return redirect('personas');
+		return redirect('participantes');
 	}
 
 }

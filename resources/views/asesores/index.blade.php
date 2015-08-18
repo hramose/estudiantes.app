@@ -24,8 +24,8 @@
                           <tbody>
                             @foreach($asesores as $asesor)
                               <tr>
-                                <td><a href="asesores/"{{ $asesor->id }} "/show"> {{ $asesor->user->name }}</a></td>
-                                <td>{{ $asesor->establecimiento->count()}}</td>
+                                <td><a href=" asesores/{{ $asesor->user_id }} "> {{ $asesor->user->name }}</a></td>
+                                <td>{{ $asesor->establecimiento->count() }}</td>
                                 <td>{{ $asesor->establecimiento->municipio->count() }}</td>
                                 <td>{{ $asesor->establecimiento->municipio->ruta }}</td>
                               </tr> 

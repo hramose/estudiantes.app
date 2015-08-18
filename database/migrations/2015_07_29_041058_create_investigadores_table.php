@@ -15,7 +15,7 @@ class CreateInvestigadoresTable extends Migration {
 		Schema::create('investigadores', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('persona_id')->unsigned();
+			$table->integer('participante_id')->unsigned();
 			$table->integer('grupoInvestigacion_id')->unsigned();
 			$table->enum('rol',['lider','tesorero','relator-secretario','investigador','acompanante','coinvestigador']);
 			$table->string('grado')->nullable();
@@ -26,8 +26,8 @@ class CreateInvestigadoresTable extends Migration {
 				->onDelete('cascade')
 				->onUpdate('cascade');
 
-			$table->foreign('persona_id')
-				->references('id')->on('personas')
+			$table->foreign('participante_id')
+				->references('id')->on('participantes')
 				->onDelete('cascade')
 				->onUpdate('cascade');
 		});

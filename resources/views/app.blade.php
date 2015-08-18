@@ -37,7 +37,7 @@
 
 					@if(Auth::check())
 
-					<li><a href="{!! url('/personas') !!}">Participantes</a></li>
+					<li><a href="{!! url('/participantes') !!}">Participantes</a></li>
 					{{-- <li><a href="{!! url('#') !!}">Convocatorias</a></li> --}}
 					<li><a href="{!! url('/grupo_investigaciones') !!}">Grupos de Investigaci&oacute;n</a></li>
 					<li><a href="{!! url('/establecimientos') !!}">Establecimientos</a></li>			

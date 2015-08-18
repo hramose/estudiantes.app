@@ -1,9 +1,9 @@
 <?php namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
-use App\Persona;
+use App\Participante;
 
-class PersonaRequest extends Request {
+class ParticipanteRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -22,7 +22,7 @@ class PersonaRequest extends Request {
 	 */
 	public function rules()
 	{
-		$persona = Persona::find($this->personas);
+		$participante = Participante::find($this->participantes);
 		$gi = $value = "";
 
 		switch($this->get('tipo'))
@@ -73,7 +73,7 @@ class PersonaRequest extends Request {
 
 	            return [
 				//
-					'documento' 							=> 	'required|min:5|unique:personas,documento,'.$persona->id,
+					'documento' 							=> 	'required|min:5|unique:personas,documento,'.$participante->id,
 					'nombre'								=>	'required|min:2',
 					'apellido'								=>	'required|min:2',
 					'sexo' 									=>	'required',

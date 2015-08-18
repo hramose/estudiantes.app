@@ -104,4 +104,12 @@ class GrupoInvestigacionController extends Controller {
 		return redirect('grupo_investigaciones');
 	}
 
+	public function ajax_gi(Request $request)
+	{
+		$grupoInvestigaciones = GrupoInvestigacion::where('establecimiento_id',$request->ee_id)->get()->toJson();
+		
+		return ($grupoInvestigaciones);
+
+	}
+
 }

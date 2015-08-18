@@ -20,9 +20,9 @@ class Investigador extends Model {
      */
     protected $fillable = ['grupoInvestigacion_id', 'persona_id','rol','grado'];
 
-    public function Persona(){
+    public function participante(){
 
-        return $this->belongsTo('App\Persona');
+        return $this->belongsTo('App\Participante');
 
     }
 

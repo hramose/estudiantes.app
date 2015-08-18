@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePersonasTable extends Migration {
+class CreateParticipantesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,7 +12,7 @@ class CreatePersonasTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('personas', function(Blueprint $table)
+		Schema::create('participantes', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->string('documento',50)->unique();
@@ -51,7 +51,7 @@ class CreatePersonasTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('personas');
+		Schema::drop('participantes');
 	}
 
 }

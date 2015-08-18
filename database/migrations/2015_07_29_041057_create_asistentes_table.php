@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateParticipantesTable extends Migration {
+class CreateAsistentesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,16 +12,16 @@ class CreateParticipantesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('participantes', function(Blueprint $table)
+		Schema::create('asistentes', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('persona_id')->unsigned();
+			$table->integer('participante_id')->unsigned();
 			$table->integer('convocatoria_id')->unsigned();
 			$table->string('hospedaje');
 			$table->string('desplazamiento');
 			$table->timestamps();
 
-			$table->foreign('persona_id')->references('id')->on('personas')->onUpdate('cascade')->onDelete('cascade');
+			$table->foreign('participante_id')->references('id')->on('participantes')->onUpdate('cascade')->onDelete('cascade');
 			$table->foreign('convocatoria_id')->references('id')->on('convocatorias')->onUpdate('cascade');
 			
 		});
@@ -34,7 +34,7 @@ class CreateParticipantesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('participantes');
+		Schema::drop('asistentes');
 	}
 
 }
