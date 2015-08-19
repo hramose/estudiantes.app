@@ -27,19 +27,24 @@
       
       var tipo = $("#tipo").val();
 
-      if( tipo == "estudiante" || tipo == "coinvestigador"  || tipo == "acompanante"){
-          $("#panelGi").show();
+      switch(tipo) {
+        case "estudiante":
+        case "coinvestigador":
+        case "acompanante":
+
+          $("#panelGi").show();   
 
           if(tipo != "estudiante"){
-            $(".grado").hide();
-            $(".rol").hide();
+
+            $(".grado, .rol").hide();
             $("#rol").val() = tipo;
-          } else {
-            $(".grado").show();
-            $(".rol").show();
 
-          }
+          } else { $(".grado, .rol").show(); }
 
-      } else { $("#panelGi").hide(); }
+          break;
+
+        default:
+          $("#panelGi").hide();
+      } 
 
     };

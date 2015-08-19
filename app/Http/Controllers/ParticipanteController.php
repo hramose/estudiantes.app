@@ -35,20 +35,16 @@ class ParticipanteController extends Controller {
 
 	{
 		//
-		$participantes = Participante::documento($request->get('documento'))
-					->whereHas('investigador',function($q){
-						$q->whereHas('grupoInvestigacion',function($q){
-							$q->whereHas('establecimiento',function($q){
-								$q->whereHas('asesor', function($q){
-									$q->where('user_id', Auth::user()->id);
-								});
-							});
-						});
-					})->paginate();
+		$participantes = Participante::documento($request->get('documento'))->with('investigador.grupoInvestigacion')
+		->whereHas('establecimiento',function($q){
+			$q->whereHas('asesor', function($q){
+				$q->where('user_id', Auth::user()->id);
+			});
+		})->paginate();
 	
-		//foreach ($personas as $persona) {dd($persona->investigador->grupoInvestigacion->first()->nombre); }
 		return view('participantes.index',compact('participantes'));
-		//dd($personas);
+
+
 	}
 
 	/**
@@ -78,22 +74,28 @@ class ParticipanteController extends Controller {
 	{
 		//$persona = Persona::create($request->all());
 		
+		$request['fechaNacimiento'] = date("Y-m-d", strtotime( $request->fechaNacimiento ));
 
-		if ($request->tipo == "estudiante" || $request->tipo == "coinvestigador" || $request->tipo == "acompanante" ){
-			$investigador = new Investigador([
-				'grupoInvestigacion_id' => $request->grupoInvestigacion_id,
-				'rol'					=> $request->rol,
-				'grado'					=> $request->grado
+		switch ($request->tipo) {
+			case 'estudiante':
+			case 'coinvestigador':
+			case 'acompanante':
+				# code...
+				$investigador = new Investigador([
+					'grupoInvestigacion_id' => $request->grupoInvestigacion_id,
+					'rol'					=> $request->rol,
+					'grado'					=> $request->grado
 				]);
+				$participante = Participante::create($request->all());
+				$investigador = $participante->investigador()->save($investigador);
 
-			$participante = Participante::create($request->all());
-			$investigador = $participante->investigador()->save($investigador);
+				break;
 			
-		}else {
-			//only create Persona
-			$participante = Participante::create($request->all());
+			default:
+				# code...
+				$participante = Participante::create($request->all());
+				break;
 		}
-
 		return redirect('participantes');
 
 	}
@@ -142,6 +144,7 @@ class ParticipanteController extends Controller {
 	public function update($id,ParticipanteRequest $request)
 	{
 		//
+		$request['fechaNacimiento'] = date("Y-m-d", strtotime( $request->fechaNacimiento ));
 
 		$participante = Participante::with('investigador')->find($id);
 	    $participante->fill($request->all());
@@ -164,7 +167,7 @@ class ParticipanteController extends Controller {
 	public function destroy($id)
 	{
 		//
-		$participante = Participante::find($id);
+		$participante = Participante::with('investigador')->find($id);
 		$participante->delete();
 
 		return redirect('participantes');

@@ -32,7 +32,6 @@
                                 <th>Fecha de Nacimiento</th>
                                 <th>Tipo de Usuario</th>
                                 <th>Establecimiento</th>
-                                {{-- <th>Grupo de Investigación</th> --}}
                                 <th>Acciones</th>
                               </tr>
                           </thead>
@@ -43,10 +42,9 @@
                                 <td>{{ $participante->documento }}</td>
                                 <td>{{ $participante->tipoDocumento }}</td>
                                 <td>{{ $participante->full_name }}</td>
-                                <td>{{ $participante->fechaNacimiento }}</td>
+                                <td>{{ date("d-m-Y", strtotime( $participante->fechaNacimiento )) }}</td>
                                 <td>{{ $participante->tipo }}</td>
                                 <td>{{ $participante->establecimiento->nombre }}</td>
-                                {{-- <td>{{ $participante->investigador->grupoInvestigacion->nombre}}</td> --}}
                                 <td><a href="participantes/{{ $participante->id }}/edit">Editar</a></td>
                                </tr> 
                             @endforeach
@@ -54,7 +52,6 @@
                       </table> 
 
                       {!! $participantes->render() !!}
-      
                 </div>
             </div>
         </div>
