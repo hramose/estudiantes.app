@@ -43,8 +43,8 @@
 							<li><a href="{!! url('/grupo_investigaciones') !!}">Grupos de Investigaci&oacute;n</a></li>
 							<li><a href="{!! url('/establecimientos') !!}">Establecimientos</a></li>			
 							<li><a href="{!! url('/municipios') !!}">Municipios</a></li>
-							<li><a href="{!! url('/asesores') !!}">Asesores</a></li>
-							{{-- <li><a href="{!! url('/asesores') !!}">Reportes</a></li> --}}
+							<li><a href="{!! url('/users') !!}">Usuarios</a></li>
+							{{-- <li><a href="{!! url('/reportes') !!}">Reportes</a></li> --}}
 						@endif
 
 					@endif

@@ -12,6 +12,6 @@
 
                     <div class="form-group">
                       {!! Form::label('establecimiento_id', 'Establecimiento:') !!}
-                      {!! Form::select('establecimiento_id',[ $establecimientos ],null, ['class' => 'form-control', 'required' => 'required']) !!}
+                      {!! Form::select('establecimiento_id',$establecimientos,null, ['class' => 'form-control', 'required' => 'required']) !!}
                       <small class="text-danger">{{ $errors->first('establecimiento_id') }}</small>
                     </div>                                  

@@ -1,12 +1,10 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Http\Requests\AsesorRequest;
 use App\Http\Controllers\Controller;
 
 use App\Asesor;
 use App\Establecimiento;
-use App\User;
 use Illuminate\Http\Request;
 
 class AsesorController extends Controller {

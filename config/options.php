@@ -25,12 +25,14 @@ return array(
         'investigador'          => 'Estudiante investigador'
     ],
 
+    'rutas' =>[
+        '1' => 'Area Metropolitana',
+        '2' => 'Pamplona',
+        '3' => 'Ocaña'
+    ],
+    
     'grados' => [
-        '1'                 => '1º',
-        '2'                 => '2º',
-        '3'                 => '3º',
-        '4'                 => '4º',
-        '5'                 => '5º'
+        '1' => '1º'
     ]
 
  );

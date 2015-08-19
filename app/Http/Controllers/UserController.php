@@ -1,27 +1,28 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Http\Requests\MunicipioRequest;
 use App\Http\Controllers\Controller;
 
-
-use App\Municipio;
+use App\User;
+use App\Asesor;
+use App\Establecimiento;
 use Illuminate\Http\Request;
 
-class MunicipioController extends Controller {
+class UserController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index(Request $request)
 	{
 		//
-		$municipios = Municipio::orderBy('id','asc')->paginate();
+		$users = User::name($request->name)->with('asesor.establecimiento.grupoInvestigacion')->orderBy('name','asc')->paginate();
+		
+		return view('users.index',compact('users'));
+		//dd($users);
 
-		return view('municipios.index',compact('municipios'));
-		//return $municipios;
 	}
 
 	/**
@@ -32,7 +33,8 @@ class MunicipioController extends Controller {
 	public function create()
 	{
 		//
-		return view('municipios.create');
+		return view('users.create');
+
 	}
 
 	/**
@@ -40,17 +42,23 @@ class MunicipioController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(MunicipioRequest $request)
+	public function store(Request $request)
 	{
 		//
-		$municipio = Municipio::create($request->all());
 
-		return redirect('municipios');
+		$request['password'] = \Hash::make($request->password);
+
+		$asesor = new Asesor(['establecimiento_id' => $request->establecimiento_id]);
+		$user = User::create($request->all());
+		$asesor = $user->asesor()->save($asesor);
+
+		return redirect('users');
+
 	}
 
 	/**
 	 * Display the specified resource.
-	 *s
+	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
@@ -68,9 +76,6 @@ class MunicipioController extends Controller {
 	public function edit($id)
 	{
 		//
-		$municipio = Municipio::find($id);
-
-		return view('municipios.edit',compact('municipio'));
 	}
 
 	/**
@@ -79,14 +84,9 @@ class MunicipioController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id, MunicipioRequest $request)
+	public function update($id)
 	{
 		//
-		$municipio = Municipio::find($id);
-		$municipio->update($request->all());
-
-		return redirect('municipios');
-
 	}
 
 	/**
@@ -98,19 +98,6 @@ class MunicipioController extends Controller {
 	public function destroy($id)
 	{
 		//
-
-		$municipio = Municipio::find($id);
-		$municipio->delete();
-
-		return redirect('municipios');
-	}
-
-	public function ajax_mun(Request $request){
-
-		$municipios = Municipio::where('ruta',$request->ruta)->get()->toJson();
-
-		return ($municipios);
-
 	}
 
 }

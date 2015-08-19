@@ -20,7 +20,6 @@
       } else {
         $("#grupoInvestigacion_id").html('"<option value =""> Seleccione un establecimiento educativo</option>');
       }
-
     };
 
     showPanelGi = function(){
@@ -46,5 +45,37 @@
         default:
           $("#panelGi").hide();
       } 
+    };
+
+    getMun = function(){
+
+        var ruta = $("#ruta").val();
+
+        $.get('/ajax-mun?ruta=' + ruta,function (data) { 
+            // succes data
+
+            //$("#municipio").empty();
+            $("#municipio").html('"<option value ="">...</option>');
+            //ajax
+            $.each(data,function(i, mun_Obj){
+                $("#municipio").append('"<option value ="' + mun_Obj.id +'">' + mun_Obj.nombre + '</option>');
+            });
+        },'json');
+
+    };
+
+    getEe = function(){
+
+        var mun_id = $("#municipio").val();
+
+        $.get('/ajax-ee?mun_id=' + mun_id,function (data) { 
+            // succes data
+
+            $("#establecimiento").empty();
+            //ajax
+            $.each(data,function(i, ee_Obj){
+                $("#establecimiento").append('"<option value ="' + ee_Obj.id +'">' + ee_Obj.nombre + '</option>');
+            });
+        },'json');
 
     };

@@ -15,10 +15,10 @@
                            </div>
 
                           <div class="form-group">
-                                {!! Form::label('grado', 'Grado:',['class'=>'grado']) !!}
-                                {!! Form::select('investigador[grado]',withEmpty(config('options.grados'),'...'),null, ['class' => 'form-control grado','name'=>'grado']) !!}
+                                {!! Form::label('grado', 'Grado',['class'=>'grado'])!!}
+                                {!! Form::select('investigador[grado]',withEmpty(config('options.grados'),'...'), null,['class' => 'form-control grado']) !!}
                                 <small class="text-danger">{{ $errors->first('grado') }}</small>
-                           </div>
+                          </div>
 
                       </div>
                     </div>

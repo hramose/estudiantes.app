@@ -22,7 +22,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['name', 'email', 'password'];
+	protected $fillable = ['name', 'email', 'password','type'];
 
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -34,6 +34,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	public function asesor(){
        return $this->hasOne('App\Asesor');
+    }
+
+    public function scopeName($query, $name){
+
+    	 if ($name != " " ){
+            $query->where('name','like','%'.$name.'%');
+        }
     }
 
 }

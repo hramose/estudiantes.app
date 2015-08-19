@@ -105,4 +105,11 @@ class EstablecimientoController extends Controller {
 		return redirect('establecimientos');
 	}
 
+	public function ajax_ee(Request $request){
+
+		$establecimientos = Establecimiento::where('municipio_id',$request->mun_id)->get()->toJson();
+
+		return($establecimientos);
+	}
+
 }
