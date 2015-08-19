@@ -1,4 +1,4 @@
-                <div class="panel panel-default" id="panelGi" style="display:none;">
+                  <div class="panel panel-default" id="panelGi" style="display:none;">
                       <div class="panel-body">
 
                           <div class="form-group">

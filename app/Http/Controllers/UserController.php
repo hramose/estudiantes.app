@@ -45,12 +45,14 @@ class UserController extends Controller {
 	public function store(Request $request)
 	{
 		//
+		//dd(\Input::get('establecimiento_id'));
 
 		$request['password'] = \Hash::make($request->password);
-
-		$asesor = new Asesor(['establecimiento_id' => $request->establecimiento_id]);
 		$user = User::create($request->all());
-		$asesor = $user->asesor()->save($asesor);
+		foreach(\Input::get('establecimiento_id') as $establecimiento_id){
+			$asesor = new Asesor(['establecimiento_id' => $establecimiento_id]);
+			$asesor = $user->asesor()->save($asesor);
+		}
 
 		return redirect('users');
 

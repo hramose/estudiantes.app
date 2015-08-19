@@ -60,4 +60,6 @@
 		</div>
 	</div>
 </div>
+<p class="small text-center">Hecho con <i class="em em-muscle"></i> por <a href="http://twitter.com/_oele">@_oele</a></p>
 @endsection
+
