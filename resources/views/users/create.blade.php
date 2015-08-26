@@ -12,6 +12,7 @@
                 {!! Form::open(['method' => 'POST', 'route' => 'users.store', 'class' => 'form']) !!}
                     
                     @include('users.partials.form')
+                    @include('users.partials.create_form')
                 
                 <div class="col-md-12">
                     <div class="btn-group pull-right">

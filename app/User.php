@@ -43,4 +43,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         }
     }
 
+    public function updatePassword($password){
+
+        if ($password != "" ){
+            return \Hash::make($password);
+        }
+        return $this->password;
+    }
+
 }

@@ -29,9 +29,9 @@
                                 <th>Nombre</th>
                                 <th>Email</th>
                                 <th>Grupos de Investigaci&oacute;n</th>
-                                <th>Establecimientos</th>
+{{--                                 <th>Establecimientos</th>
                                 <th>Municipios</th>
-                                <th>Ruta</th>
+                                <th>Ruta</th> --}}
                                 <th>Acciones</th>
                               </tr>
                           </thead>
@@ -41,10 +41,14 @@
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
-                                <td>{{ $user->asesor->establecimiento->grupoInvestigacion->count() }}</td>
-                                <td>{{ $user->asesor->establecimiento->count() }}</td>
-                                <td>{{ $user->asesor->establecimiento->municipio->count() }}</td>
-                                <td>{{ $user->asesor->establecimiento->municipio->ruta }}</td>
+                                @if($user->asesor != "")
+                                  <td>{{ $user->asesor->establecimiento->grupoInvestigacion->count() }}</td>
+{{--                              <td>{{ $user->asesor->establecimiento->count() }}</td>
+                                  <td>{{ $user->asesor->establecimiento->municipio->count() }}</td>
+                                  <td>{{ $user->asesor->establecimiento->municipio->ruta }}</td> --}}
+                                @else
+                                  <td>0</td>
+                                @endif
                                 <td><a href="users/{{ $user->id }}/edit">Editar</a></td>
                                </tr> 
                             @endforeach

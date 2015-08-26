@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\Asesor;
 use App\Establecimiento;
+
 use Illuminate\Http\Request;
 
 class UserController extends Controller {
@@ -18,10 +19,11 @@ class UserController extends Controller {
 	public function index(Request $request)
 	{
 		//
-		$users = User::name($request->name)->with('asesor.establecimiento.grupoInvestigacion')->orderBy('name','asc')->paginate();
-		
+		$users = User::name($request->get('name'))->orderBy('id','asc')->groupBy('id')->paginate();
+		// $asesores = Asesor::with('user')->where('user_id',)->orderBy('user_id','asc')->groupBy('user_id')->paginate();
+
 		return view('users.index',compact('users'));
-		//dd($users);
+
 
 	}
 
@@ -78,7 +80,13 @@ class UserController extends Controller {
 	public function edit($id)
 	{
 		//
-	}
+		$user = User::find($id);
+		$asesorias =  Asesor::with('user')->where('user_id',$user->id)->get();
+
+		
+		//dd($asesorias);
+		return view('users.edit',compact('asesorias','user'));
+	}//
 
 	/**
 	 * Update the specified resource in storage.
@@ -86,9 +94,25 @@ class UserController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id, Request $request)
 	{
 		//
+		$user = User::with('asesor')->find($id);
+		$request['password'] = $user->updatePassword($request->password);
+		$user->fill($request->all());
+		//dd($user->asesor);
+		
+		if( $user->asesor() != null ){
+			$asesorias = Asesor::where('user_id',$user->id);
+			$asesorias->delete();
+		}
+
+	    foreach(\Input::get('establecimiento_id') as $establecimiento_id){
+	    	$asesor = new Asesor(['establecimiento_id' => $establecimiento_id]);
+	    	$asesor = $user->asesor()->save($asesor);	
+	    }
+
+		return redirect('users');
 	}
 
 	/**
@@ -98,8 +122,18 @@ class UserController extends Controller {
 	 * @return Response
 	 */
 	public function destroy($id)
+
 	{
 		//
+		$user = User::with('asesor')->find($id);
+		$asesorias = Asesor::where('user_id',$user->id);
+		$asesorias->delete();
+
+		if($user->type != "1"){
+			$user->delete();
+		}
+
+		return redirect('users');
 	}
 
 }
