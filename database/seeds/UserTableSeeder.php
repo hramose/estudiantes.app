@@ -18,7 +18,7 @@ class UserTableSeeder extends Seeder {
 			'name'		=>'Osmell Caicedo',
 			'email'		=>'web.enjambre@gmail.com',
 			'password'	=>\Hash::make('secret'),
-			'type'		=>'2'
+			'type'		=>'1'
 			]);
 		
 		// $this->call('UserTableSeeder');
