@@ -99,7 +99,7 @@ class UserController extends Controller {
 		//
 		$user = User::with('asesor')->find($id);
 		$request['password'] = $user->updatePassword($request->password);
-		$user->fill($request->all());
+		$user->update($request->all());
 		//dd($user->asesor);
 		
 		if( $user->asesor() != null ){
@@ -107,9 +107,11 @@ class UserController extends Controller {
 			$asesorias->delete();
 		}
 
-	    foreach(\Input::get('establecimiento_id') as $establecimiento_id){
-	    	$asesor = new Asesor(['establecimiento_id' => $establecimiento_id]);
-	    	$asesor = $user->asesor()->save($asesor);	
+		if($request->establecimiento_id !=""){
+			foreach(\Input::get('establecimiento_id') as $establecimiento_id){
+				$asesor = new Asesor(['establecimiento_id' => $establecimiento_id]);
+				$asesor = $user->asesor()->save($asesor);	
+			}
 	    }
 
 		return redirect('users');
