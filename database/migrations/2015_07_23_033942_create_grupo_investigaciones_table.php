@@ -18,8 +18,8 @@ class CreateGrupoInvestigacionesTable extends Migration {
 			$table->string('nombre');
 			$table->string('codigoCV')->nullable();
 			$table->string('pregunta')->nullable();
-			$table->enum('linea',['a','b']);
-			$table->enum('red',['1','2']);
+			$table->enum('linea',['a','b'])->nullable();
+			$table->enum('red',['1','2'])->nullable();
 			$table->integer('establecimiento_id')->unsigned();
 			$table->timestamps();
 
