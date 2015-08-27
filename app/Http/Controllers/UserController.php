@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
 
 use App\User;
@@ -44,16 +45,18 @@ class UserController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Request $request)
+	public function store(UserRequest $request)
 	{
 		//
 		//dd(\Input::get('establecimiento_id'));
 
 		$request['password'] = \Hash::make($request->password);
 		$user = User::create($request->all());
-		foreach(\Input::get('establecimiento_id') as $establecimiento_id){
-			$asesor = new Asesor(['establecimiento_id' => $establecimiento_id]);
-			$asesor = $user->asesor()->save($asesor);
+		if($request->establecimiento_id !=""){
+			foreach(\Input::get('establecimiento_id') as $establecimiento_id){
+				$asesor = new Asesor(['establecimiento_id' => $establecimiento_id]);
+				$asesor = $user->asesor()->save($asesor);
+			}
 		}
 
 		return redirect('users');
@@ -94,7 +97,7 @@ class UserController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id, Request $request)
+	public function update($id, UserRequest $request)
 	{
 		//
 		$user = User::with('asesor')->find($id);

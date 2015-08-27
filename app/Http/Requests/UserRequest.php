@@ -1,6 +1,7 @@
 <?php namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
+use App\User;
 
 class UserRequest extends Request {
 
@@ -11,7 +12,7 @@ class UserRequest extends Request {
 	 */
 	public function authorize()
 	{
-		return false;
+		return true;
 	}
 
 	/**
@@ -21,9 +22,49 @@ class UserRequest extends Request {
 	 */
 	public function rules()
 	{
-		return [
-			//
-		];
+		$user = User::find($this->users);
+		$value = "";
+
+		if($this->get('type') == '2'){
+			$value = 'required';
+		}
+
+	    switch($this->method())
+	    {
+	        case 'GET':
+	        case 'DELETE':
+	        {
+	            return [];
+	        }
+	        case 'POST':
+	        {
+
+	            return [
+				//
+					'name' 								=> 	'required|min:5',
+					'email'								=>	'required|unique:users,email',
+					'password'							=>	'required',
+					'type'								=>	'required',
+					'establecimiento_id'				=>	$value
+
+				];
+	        }
+
+	        case 'PUT':
+	        case 'PATCH':
+	        {	
+	            return [
+				//
+					'name' 								=> 	'required|min:5',
+					'email'								=>	'required|unique:users,email,'.$user->id,
+					'type'								=>	'required',
+					'establecimiento_id'				=>	$value
+
+				];
+	        }
+
+	        default:break;
+	    }
 	}
 
 }

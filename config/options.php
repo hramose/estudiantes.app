@@ -26,9 +26,9 @@ return array(
     ],
 
     'rutas' =>[
-        '1' => 'Area Metropolitana',
-        '2' => 'Pamplona',
-        '3' => 'Ocaña'
+        '1' => '1. Area Metropolitana',
+        '2' => '2. Ocaña',
+        '3' => '3. Pamplona'
     ],
     
     'grados' => [
