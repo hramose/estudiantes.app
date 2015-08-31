@@ -1,6 +1,9 @@
 <?php namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Http\RedirectResponse;
+
 
 class AdminMiddleware {
 
@@ -30,13 +33,17 @@ class AdminMiddleware {
 	 * @return mixed
 	 */
 	public function handle($request, Closure $next)
-	{	
-		if ($request->user()->type != '1' )
+	{
+		if ($this->auth->check())
 		{
-            return new RedirectResponse(url('/'));
-        }
+			if($request->user()->type != '1' ){
+
+				return new RedirectResponse(url('/home'));
+			}
+		}
 
 		return $next($request);
 	}
 
 }
+
