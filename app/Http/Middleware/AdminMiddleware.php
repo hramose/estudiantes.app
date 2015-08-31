@@ -4,6 +4,24 @@ use Closure;
 
 class AdminMiddleware {
 
+
+	/**
+	 * The Guard implementation.
+	 *
+	 * @var Guard
+	 */
+	protected $auth;
+
+	/**
+	 * Create a new filter instance.
+	 *
+	 * @param  Guard  $auth
+	 * @return void
+	 */
+	public function __construct(Guard $auth)
+	{
+		$this->auth = $auth;
+	}
 	/**
 	 * Handle an incoming request.
 	 *
@@ -13,12 +31,13 @@ class AdminMiddleware {
 	 */
 	public function handle($request, Closure $next)
 	{	
-		if !($request->user()->type == '1' || Auth::check() )
+		if ($request->user()->type != '1' )
 		{
-            return redirect('/');
+            return new RedirectResponse(url('/'));
         }
 
 		return $next($request);
 	}
 
 }
+w
