@@ -13,7 +13,7 @@ class AdminMiddleware {
 	 */
 	public function handle($request, Closure $next)
 	{	
-		if !($request->user()->type = '1' || Auth::check() )
+		if !($request->user()->type == '1' || Auth::check() )
 		{
             return redirect('/');
         }
