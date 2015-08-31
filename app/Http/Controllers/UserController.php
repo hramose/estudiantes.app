@@ -59,13 +59,12 @@ class UserController extends Controller {
 	public function store(UserRequest $request)
 	{
 		//
-		//dd(\Input::get('establecimiento_id'));
-
 		$request['password'] = \Hash::make($request->password);
 		$user = User::create($request->all());
+
 		if($request->establecimiento_id !=""){
-			foreach(\Input::get('establecimiento_id') as $establecimiento_id){
-				$asesor = new Asesor(['establecimiento_id' => $establecimiento_id]);
+			foreach($request->establecimiento_id as $establecimiento){
+				$asesor = new Asesor(['establecimiento_id' => $establecimiento]);
 				$asesor = $user->asesor()->save($asesor);
 			}
 		}
@@ -122,7 +121,7 @@ class UserController extends Controller {
 		}
 
 		if($request->establecimiento_id !=""){
-			foreach(\Input::get('establecimiento_id') as $establecimiento_id){
+			foreach($request->establecimiento_id as $establecimiento_id){
 				$asesor = new Asesor(['establecimiento_id' => $establecimiento_id]);
 				$asesor = $user->asesor()->save($asesor);	
 			}
