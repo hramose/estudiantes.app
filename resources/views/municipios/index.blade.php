@@ -7,7 +7,7 @@
             
             
             <div class="panel panel-default">
-                <div class="panel-heading">Municipios</div>
+                <div class="panel-heading">Municipios: {{ $municipios->count() }}</div>
                 <div class="panel-body ">
                     <div class="btn-group pull-left">
                         <a class="btn btn-info" href="{!! url('municipios/create')!!}" role="button">Nuevo</a>          

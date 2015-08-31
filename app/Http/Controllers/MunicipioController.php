@@ -18,7 +18,7 @@ class MunicipioController extends Controller {
 	public function index()
 	{
 		//
-		$municipios = Municipio::orderBy('id','asc')->paginate();
+		$municipios = Municipio::orderBy('nombre','asc')->paginate();
 
 		return view('municipios.index',compact('municipios'));
 		//return $municipios;

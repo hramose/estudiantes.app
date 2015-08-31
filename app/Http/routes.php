@@ -17,6 +17,8 @@ Route::get('/', 'HomeController@index');
 Route::get('home', 'HomeController@index');
 Resource('participantes','ParticipanteController');
 Route::get('ajax-gi','GrupoInvestigacionController@ajax_gi');
+Route::get('ajax-mun','MunicipioController@ajax_mun');
+Route::get('ajax-ee','EstablecimientoController@ajax_ee');
 
 Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function()
 {
@@ -25,8 +27,7 @@ Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function()
         resource('establecimientos','EstablecimientoController');
         resource('grupo_investigaciones','GrupoInvestigacionController');
         resource('users','UserController');
-        Route::get('ajax-mun','MunicipioController@ajax_mun');
-        Route::get('ajax-ee','EstablecimientoController@ajax_ee');
+
 
 });
 

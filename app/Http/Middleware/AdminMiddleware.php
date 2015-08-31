@@ -13,9 +13,9 @@ class AdminMiddleware {
 	 */
 	public function handle($request, Closure $next)
 	{	
-		if($request->user()->type != '1')
+		if !($request->user()->type = '1' || Auth::check() )
 		{
-            return redirect('home');
+            return redirect('/');
         }
 
 		return $next($request);

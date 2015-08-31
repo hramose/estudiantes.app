@@ -7,7 +7,7 @@
             
             
             <div class="panel panel-default">
-                <div class="panel-heading">Grupos de Investigación</div>
+                <div class="panel-heading">Grupos de Investigación : {{ $grupo_investigaciones->count() }}</div>
                 <div class="panel-body ">
                     <div class="btn-group pull-left">
                         <a class="btn btn-info" href="{!! url('grupo_investigaciones/create')!!}" role="button">Nuevo</a>          
