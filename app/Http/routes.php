@@ -28,7 +28,6 @@ Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function()
         resource('grupo_investigaciones','GrupoInvestigacionController');
         resource('users','UserController');
 
-
 });
 
 Route::controllers([
