@@ -62,13 +62,13 @@ class UserController extends Controller {
 		$request['password'] = \Hash::make($request->password);
 		$user = User::create($request->all());
 
-		// if($request->establecimiento_id !=""){
-		// 	foreach($request->establecimiento_id as $establecimiento){
-		// 		$asesor = new Asesor(['establecimiento_id' => $establecimiento]);
-		// 		$asesor = $user->asesor()->save($asesor);
-		// 	}
-		// }
-
+		if($request->establecimiento_id !=""){
+			foreach($request->establecimiento_id as $establecimiento){
+				$asesor = new Asesor(['establecimiento_id' => $establecimiento]);
+				$asesor = $user->asesor()->save($asesor);
+			}
+		}
+		
 		return redirect('users');
 
 	}

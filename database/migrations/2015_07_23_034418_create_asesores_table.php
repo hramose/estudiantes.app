@@ -17,7 +17,7 @@ class CreateAsesoresTable extends Migration {
             $table->timestamps();
             $table->foreign('establecimiento_id')->references('id')->on('establecimientos')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->primary(['establecimiento_id','user_id']);
+            $table->primary(['user_id','establecimiento_id']);
         });
     }
     /**
