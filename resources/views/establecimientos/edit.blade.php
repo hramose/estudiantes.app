@@ -30,4 +30,9 @@
     </div>
 </div>
 @endsection
+@section('scripts')
+
+  @include('establecimientos.partials.scripts')
+  
+@endsection
 

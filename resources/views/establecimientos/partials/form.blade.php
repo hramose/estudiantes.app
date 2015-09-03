@@ -11,7 +11,12 @@
                     </div> 
 
                     <div class="form-group">
+                        {!! Form::label('ruta', 'Ruta:') !!}
+                        {!! Form::select('ruta', withEmpty(config('options.rutas'),'...'), null, ['class' => 'form-control']) !!}
+                    </div>
+
+                    <div class="form-group">
                       {!! Form::label('municipio_id', 'Municipio:') !!}
-                      {!! Form::select('municipio_id', $municipios ,null, ['class' => 'form-control', 'required' => 'required']) !!}
+                      <select  class="form-control" name="municipio_id" id="municipio_id" required></select>
                       <small class="text-danger">{{ $errors->first('municipio_id') }}</small>
                     </div> 

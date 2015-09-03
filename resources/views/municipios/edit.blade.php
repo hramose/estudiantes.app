@@ -9,19 +9,10 @@
                 <div class="panel-body ">
                     {!! Form::model($municipio,['method' => 'PATCH', 'route' => ['municipios.update',$municipio->id ], 'class' => 'form-horizontal col-md-6']) !!}
                 
-                    <div class="form-group">
-                        {!! Form::label('nombre', 'Municipio:') !!}
-                        {!! Form::text('nombre', null , ['class' => 'form-control', 'required' => 'required']) !!}
-                        <small class="text-danger"> {{ $errors->first('nombre') }}</small>
-                    </div>  
-                    <div class="form-group">
-                      {!! Form::label('nodo', 'Nodo:') !!}
-                      {!! Form::select('nodo', ['1' => '&Aacute;rea metrop&oacute;litana','2'=>'Oca&ntilde;a','3'=>'Pamplona'], null , ['class' => 'form-control', 'required' => 'required']) !!}
-                      <small class="text-danger">{{ $errors->first('nodo') }}</small>
-                    </div>
+                    @include('municipios.partials.form')
                     
                     <div class="btn-group pull-right">
-                        <a class="btn btn-warning" href="{!! url('municipios') !!}" role="button">Cancelar</a>
+                        <a class="btn btn-warning" href="{!! url('municipios') !!}" role="button">Cancelar</a>          
                         {!! Form::submit("Actualizar", ['class' => 'btn btn-success']) !!}
                     </div>
                 

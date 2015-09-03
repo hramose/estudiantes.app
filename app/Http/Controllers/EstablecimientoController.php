@@ -40,7 +40,6 @@ class EstablecimientoController extends Controller {
 	public function create()
 	{
 		//
-		$municipios = [''=>''] + Municipio::lists('nombre','id');
 		return view('establecimientos.create',compact('municipios'));
 
 	}
@@ -79,9 +78,6 @@ class EstablecimientoController extends Controller {
 	{
 		//
 		$establecimiento = Establecimiento::find($id);
-		$municipios = Municipio::lists('nombre','id');
-
-
 		return view('establecimientos.edit',compact('establecimiento','municipios'));
 	}
 

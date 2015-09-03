@@ -41,7 +41,6 @@ class GrupoInvestigacionController extends Controller {
 	public function create()
 	{
 		//
-		$establecimientos = [''=>''] + Establecimiento::lists('nombre','id');
 		return view('grupo_investigaciones.create',compact('establecimientos'));
 	}
 
@@ -78,9 +77,6 @@ class GrupoInvestigacionController extends Controller {
 	{
 		//
 		$grupo_investigacion = GrupoInvestigacion::find($id);
-		$establecimientos = Establecimiento::lists('nombre','id');
-
-
 		return view('grupo_investigaciones.edit',compact('grupo_investigacion','establecimientos'));
 	}
 
