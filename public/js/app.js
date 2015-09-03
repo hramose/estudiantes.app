@@ -49,16 +49,16 @@
 
     getMun = function(){
 
-        var ruta = $("#ruta").val();
+        var ruta = $("#ruta_id").val();
 
         $.get('/ajax-mun?ruta=' + ruta,function (data) { 
             // succes data
 
             //$("#municipio").empty();
-            $("#municipio").html('"<option value ="">...</option>');
+            $("#municipio_id").html('"<option value ="">...</option>');
             //ajax
             $.each(data,function(i, mun_Obj){
-                $("#municipio").append('"<option value ="' + mun_Obj.id +'">' + mun_Obj.nombre + '</option>');
+                $("#municipio_id").append('"<option value ="' + mun_Obj.id +'">' + mun_Obj.nombre + '</option>');
             });
         },'json');
 
@@ -66,7 +66,7 @@
 
     getEe = function(){
 
-        var mun_id = $("#municipio").val();
+        var mun_id = $("#municipio_id").val();
 
         $.get('/ajax-ee?mun_id=' + mun_id,function (data) { 
             // succes data

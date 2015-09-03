@@ -11,8 +11,8 @@
                     </div> 
 
                     <div class="form-group">
-                        {!! Form::label('ruta', 'Ruta:') !!}
-                        {!! Form::select('ruta', withEmpty(config('options.rutas'),'...'), null, ['class' => 'form-control']) !!}
+                        {!! Form::label('ruta_id', 'Ruta:') !!}
+                        {!! Form::select('ruta_id', withEmpty(config('options.rutas'),'...'), null, ['class' => 'form-control']) !!}
                     </div>
 
                     <div class="form-group">

@@ -11,13 +11,13 @@
                     </div>
 
                     <div class="form-group col-md-5">
-                        {!! Form::label('ruta', 'Ruta:') !!}
-                        {!! Form::select('ruta', withEmpty(config('options.rutas'),'...'), null, ['class' => 'form-control']) !!}
+                        {!! Form::label('ruta_id', 'Ruta:') !!}
+                        {!! Form::select('ruta_id', withEmpty(config('options.rutas'),'...'), null, ['class' => 'form-control']) !!}
                     </div>
 
                     <div class="form-group col-md-7 col-md-offset-1">
-                        {!! Form::label('municipio', 'Municipio:') !!}
-                        {!! Form::select('municipio', [''=>''], null, ['class' => 'form-control']) !!}
+                        {!! Form::label('municipio_id', 'Municipio:') !!}
+                        {!! Form::select('municipio_id', [''=>''], null, ['class' => 'form-control']) !!}
                     </div>
 
                     <div class="form-group">
