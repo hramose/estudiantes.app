@@ -1,6 +1,8 @@
 <?php namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
+use App\Municipio;
+
 
 class MunicipioRequest extends Request {
 
@@ -20,12 +22,41 @@ class MunicipioRequest extends Request {
 	 * @return array
 	 */
 	public function rules()
-	{
-		return [
-			//
-			'nombre' => 'required|min:3',
-			'ruta' => 'required'
-		];
+	{		
+		$municipio = Participante::find($this->municipios);
+
+		switch($this->method())
+	    {
+	        case 'GET':
+	        case 'DELETE':
+	        {
+	            return [];
+	        }
+	        case 'POST':
+	        {
+
+	            return [
+				//
+					'nombre' 	=> 'required|min:3|unique:municipios,nombre',
+					'ruta' 		=> 'required'
+
+				];
+	        }
+
+	        case 'PUT':
+	        case 'PATCH':
+	        {
+
+	            return [
+				//
+					'nombre' 	=> 'required|min:3|unique:municipios,nombre,'.$municipio->id,
+					'ruta' 		=> 'required'
+
+				];
+	        }
+
+	        default:break;
+	    }
 	}
 
 }
