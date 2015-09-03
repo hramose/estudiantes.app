@@ -21,8 +21,7 @@
                     </div>
 
                     <div class="form-group">
-                      {!! Form::label('establecimiento_id', 'Establecimientos:') !!}<br>
-                      <small>Seleccione los establecimientos a asignar</small>
-                      <select  class="form-control" name="establecimiento_id[]" id="establecimiento_id" multiple></select>
+                      {!! Form::label('establecimiento_id', 'Establecimiento:') !!}<br>
+                      <select  class="form-control" name="establecimiento_id" id="establecimiento"></select>
                       <small class="text-danger">{{ $errors->first('establecimiento_id') }}</small>
                     </div>                                  
