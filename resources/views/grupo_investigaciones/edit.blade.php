@@ -28,3 +28,8 @@
     </div>
 </div>
 @endsection
+@section('scripts')
+
+  @include('grupo_investigaciones.partials.scripts')
+  
+@endsection

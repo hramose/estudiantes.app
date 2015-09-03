@@ -15,13 +15,12 @@
                         {!! Form::select('ruta', withEmpty(config('options.rutas'),'...'), null, ['class' => 'form-control']) !!}
                     </div>
 
-                    <div class="form-group col-md-7">
+                    <div class="form-group col-md-7 col-offset-1">
                         {!! Form::label('municipio', 'Municipio:') !!}
                         {!! Form::select('municipio', [''=>''], null, ['class' => 'form-control']) !!}
                     </div>
 
                     <div class="form-group">
-                      {!! Form::label('establecimiento_id', 'Establecimiento:') !!}
                       {!! Form::label('establecimiento_id', 'Establecimientos:') !!}<br>
                       <small>Seleccione los establecimientos a asignar</small>
                       <select  class="form-control" name="establecimiento_id[]" id="establecimiento_id" multiple></select>
